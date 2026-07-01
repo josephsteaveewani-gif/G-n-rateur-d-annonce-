@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Annonces immobilières</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:sans-serif;background:#F7F5F0;padding:20px}
+.header{display:flex;align-items:center;gap:10px;margin-bottom:20px}
+.back{color:#1F3D2E;text-decoration:none;font-size:14px}
+h1{color:#1F3D2E;font-size:22px}
+label{display:block;margin-top:15px;font-weight:bold;color:#1A1A1A;font-size:14px}
+input,textarea,select{width:100%;padding:10px;margin-top:5px;border:1px solid #D8D4C8;border-radius:6px;font-size:15px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.tag{padding:6px 12px;border-radius:20px;font-size:13px;cursor:pointer;border:1px solid #D8D4C8;background:white}
+.tag.active{background:#1F3D2E;color:white;border-color:#1F3D2E}
+.add-row{display:flex;gap:8px;margin-top:8px}
+.add-row input{flex:1}
+.add-row button{padding:8px 14px;background:#1F3D2E;color:white;border:none;border-radius:6px;cursor:pointer;font-size:13px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chip{padding:5px 10px;border-radius:20px;font-size:12px;display:flex;align-items:center;gap:5px}
+.chip.fort{background:#B5703D;color:white}
+.chip.tact{background:#6B6459;color:white}
+.chip span{cursor:pointer;font-size:14px}
+button.gen{width:100%;padding:14px;margin-top:20px;background:#1F3D2E;color:white;border:none;border-radius:8px;font-size:16px;cursor:pointer;font-weight:bold}
+button.gen:disabled{background:#ccc}
+#resultat{margin-top:20px;padding:15px;background:white;border:1px solid #D8D4C8;border-radius:8px;white-space:pre-wrap;min-height:80px;color:#1A1A1A;font-size:15px;line-height:1.6}
+.copy-btn{margin-top:10px;padding:8px 16px;background:white;border:1px solid #1F3D2E;color:#1F3D2E;border-radius:6px;cursor:pointer;font-size:13px}
+</style>
+</head>
+<body>
+<div class="header">
+  <a href="index.html" class="back">← Accueil</a>
+</div>
+<h1>🏠 Générateur d'annonces immobilières</h1>
+
+<label>Type de bien</label>
+<div class="tags" id="types">
+  <div class="tag active" onclick="selectTag(this,'types')">Appartement</div>
+  <div class="tag" onclick="selectTag(this,'types')">Maison</div>
+  <div class="tag" onclick="selectTag(this,'types')">Studio</div>
+  <div class="tag" onclick="selectTag(this,'types')">Loft</div>
+  <div class="tag" onclick="selectTag(this,'types')">Terrain</div>
+</div>
+
+<label>Surface (m²)</label>
+<input type="number" id="surface" placeholder="65">
+
+<label>Nombre de pièces</label>
+<input type="number" id="pieces" placeholder="3">
+
+<label>Quartier / ville</label>
+<input type="text" id="quartier" placeholder="Croix-Rousse, Lyon">
+
+<label>Prix (€)</label>
+<input type="number" id="prix" placeholder="285000">
+
+<label>Points forts</label>
+<div class="chips" id="chips-forts"></div>
+<div class="add-row">
+  <input type="text" id="input-fort" placeholder="Ex : Lumineux, balcon...">
+  <button onclick="ajouterChip('fort')">+ Ajouter</button>
+</div>
+
+<label>Points à mentionner avec tact</label>
+<div class="chips" id="chips-tact"></div>
+<div class="add-row">
+  <input type="text" id="input-tact" placeholder="Ex : pas d'ascenseur...">
+  <button onclick="ajouterChip('tact')">+ Ajouter</button>
+</div>
+
+<label>Détails complémentaires (optionnel)</label>
+<textarea id="details" rows="3" placeholder="Cuisine équipée, double exposition..."></textarea>
+
+<label>Ton</label>
+<div class="tags" id="tons">
+  <div class="tag active" onclick="selectTag(this,'tons')">Chaleureux</div>
+  <div class="tag" onclick="selectTag(this,'tons')">Sobre</div>
+  <div class="tag" onclick="selectTag(this,'tons')">Premium</div>
+</div>
+
+<button class="gen" onclick="generer()" id="btn">✨ Générer l'annonce</button>
+<div id="resultat">L'annonce apparaîtra ici...</div>
+<button class="copy-btn" onclick="copier()" style="display:none" id="copy-btn">📋 Copier</button>
+
+<script>
+function selectTag(el,group){
+  document.querySelectorAll('#'+group+' .tag').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+}
+function getTag(group){
+  return document.querySelector('#'+group+' .tag.active')?.textContent||'';
+}
+let forts=[],tacts=[];
+function ajouterChip(type){
+  const input=document.getElementById('input-'+type);
+  const val=input.value.trim();
+  if(!val)return;
+  if(type==='fort')forts.push(val);
+  else tacts.push(val);
+  renderChips();
+  input.value='';
+}
+function supprimerChip(type,i){
+  if(type==='fort')forts.splice(i,1);
+  else tacts.splice(i,1);
+  renderChips();
+}
+function renderChips(){
+  document.getElementById('chips-forts').innerHTML=forts.map((f,i)=>`<div class="chip fort">${f}<span onclick="supprimerChip('fort',${i})">×</span></div>`).join('');
+  document.getElementById('chips-tact').innerHTML=tacts.map((t,i)=>`<div class="chip tact">${t}<span onclick="supprimerChip('tact',${i})">×</span></div>`).join('');
+}
+async function generer(){
+  const btn=document.getElementById('btn');
+  const res=document.getElementById('resultat');
+  btn.disabled=true;btn.textContent='Génération en cours...';
+  res.textContent='';
+  document.getElementById('copy-btn').style.display='none';
+  const prompt=`Tu es rédacteur spécialisé en annonces immobilières en France. Rédige une annonce immobilière professionnelle et attrayante en français à partir de ces informations :
+Type : ${getTag('types')}
+Surface : ${document.getElementById('surface').value} m²
+Pièces : ${document.getElementById('pieces').value}
+Quartier : ${document.getElementById('quartier').value}
+Prix : ${document.getElementById('prix').value} €
+Points forts : ${forts.join(', ')||'non précisés'}
+Points à mentionner avec tact (intègre-les avec neutralité) : ${tacts.join(', ')||'aucun'}
+Détails : ${document.getElementById('details').value||'aucun'}
+Ton : ${getTag('tons')}
+Consignes : titre court accrocheur, 2-3 paragraphes fluides, appel à l'action final. Réponds uniquement avec le texte de l'annonce.`;
+  try{
+    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:1000,messages:[{role:'user',content:prompt}]})});
+    const d=await r.json();
+    res.textContent=d.content.map(b=>b.text||'').join('\n');
+    document.getElementById('copy-btn').style.display='inline-block';
+  }catch(e){res.textContent='Erreur, réessaie.';}
+  btn.disabled=false;btn.textContent='✨ Générer l\'annonce';
+}
+function copier(){
+  navigator.clipboard.writeText(document.getElementById('resultat').textContent);
+  document.getElementById('copy-btn').textContent='✅ Copié !';
+  setTimeout(()=>document.getElementById('copy-btn').textContent='📋 Copier',2000);
+}
+</script>
+</body>
+    </html>
