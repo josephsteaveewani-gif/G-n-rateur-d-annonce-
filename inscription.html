@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inscription - Outils IA</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:sans-serif;background:#F5F5F0;padding:20px}
+.back{color:#1A1A2E;text-decoration:none;font-size:14px}
+h1{color:#1A1A2E;font-size:24px;margin:15px 0 5px}
+.subtitle{color:#666;font-size:14px;margin-bottom:25px}
+.card{background:white;border-radius:12px;padding:25px;margin-bottom:20px}
+.card h2{color:#1A1A2E;font-size:16px;margin-bottom:15px}
+label{display:block;font-size:13px;font-weight:bold;color:#333;margin-top:12px;margin-bottom:4px}
+input,select{width:100%;padding:12px;border:1px solid #ddd;border-radius:8px;font-size:15px}
+input:focus,select:focus{outline:none;border-color:#1A1A2E}
+.avantages{list-style:none;margin:10px 0}
+.avantages li{padding:6px 0;color:#444;font-size:14px}
+.avantages li::before{content:"✓ ";color:#1F3D2E;font-weight:bold}
+.submit-btn{width:100%;padding:14px;background:#1A1A2E;color:white;border:none;border-radius:8px;font-size:16px;font-weight:bold;cursor:pointer;margin-top:20px}
+.submit-btn:disabled{background:#ccc}
+.error{color:red;font-size:13px;margin-top:5px;display:none}
+</style>
+</head>
+<body>
+<a href="index.html" class="back">← Accueil</a>
+<h1>📝 Créer mon compte</h1>
+<p class="subtitle">Inscrivez-vous pour accéder aux outils IA</p>
+
+<div class="card">
+  <h2>✨ Ce que vous obtenez</h2>
+  <ul class="avantages">
+    <li>Accès aux 3 outils IA professionnels</li>
+    <li>Annonces immobilières illimitées</li>
+    <li>Descriptions de menu illimitées</li>
+    <li>Fiches produits illimitées</li>
+    <li>Support WhatsApp inclus</li>
+    <li>Mises à jour gratuites</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>👤 Vos informations</h2>
+  <label>Nom complet</label>
+  <input type="text" id="nom" placeholder="Ex : Jean Dupont">
+  <label>Numéro WhatsApp</label>
+  <input type="tel" id="whatsapp" placeholder="Ex : 069XXXXXXX">
+  <label>Secteur d'activité</label>
+  <select id="secteur">
+    <option value="">-- Choisir votre secteur --</option>
+    <option>Agence immobilière</option>
+    <option>Restaurant</option>
+    <option>Boutique / E-commerce</option>
+    <option>Autre</option>
+  </select>
+  <label>Ville</label>
+  <input type="text" id="ville" placeholder="Ex : Brazzaville">
+  <p class="error" id="error">Veuillez remplir tous les champs.</p>
+  <button class="submit-btn" onclick="inscrire()" id="btn">Continuer vers le paiement →</button>
+</div>
+
+<script>
+async function inscrire(){
+  const nom=document.getElementById('nom').value.trim();
+  const whatsapp=document.getElementById('whatsapp').value.trim();
+  const secteur=document.getElementById('secteur').value;
+  const ville=document.getElementById('ville').value.trim();
+  const error=document.getElementById('error');
+
+  if(!nom||!whatsapp||!secteur||!ville){
+    error.style.display='block';
+    return;
+  }
+  error.style.display='none';
+
+  const btn=document.getElementById('btn');
+  btn.disabled=true;
+  btn.textContent='Enregistrement...';
+
+  try{
+    await fetch('https://hook.eu1.make.com/9ps63bbifempkoaoyy0eaurzffxeohlx',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        type:'inscription',
+        nom,
+        whatsapp,
+        secteur,
+        ville,
+        date:new Date().toLocaleDateString('fr-FR'),
+        heure:new Date().toLocaleTimeString('fr-FR')
+      })
+    });
+  }catch(e){}
+
+  localStorage.setItem('nom',nom);
+  localStorage.setItem('whatsapp',whatsapp);
+  window.location.href='abonnement.html';
+}
+</script>
+</body>
+    </html>
