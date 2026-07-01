@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Descriptions de menu</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:sans-serif;background:#FBF7F0;padding:20px}
+.back{color:#8B2E1F;text-decoration:none;font-size:14px}
+h1{color:#8B2E1F;font-size:22px;margin:10px 0 20px}
+label{display:block;margin-top:15px;font-weight:bold;color:#1A1A1A;font-size:14px}
+input,textarea{width:100%;padding:10px;margin-top:5px;border:1px solid #E0D5C7;border-radius:6px;font-size:15px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.tag{padding:6px 12px;border-radius:20px;font-size:13px;cursor:pointer;border:1px solid #E0D5C7;background:white}
+.tag.active{background:#8B2E1F;color:white;border-color:#8B2E1F}
+.add-row{display:flex;gap:8px;margin-top:8px}
+.add-row input{flex:1}
+.add-row button{padding:8px 14px;background:#8B2E1F;color:white;border:none;border-radius:6px;cursor:pointer;font-size:13px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chip{padding:5px 10px;border-radius:20px;font-size:12px;display:flex;align-items:center;gap:5px;background:#C97B3D;color:white}
+.chip span{cursor:pointer}
+button.gen{width:100%;padding:14px;margin-top:20px;background:#8B2E1F;color:white;border:none;border-radius:8px;font-size:16px;cursor:pointer;font-weight:bold}
+button.gen:disabled{background:#ccc}
+#resultat{margin-top:20px;padding:15px;background:white;border:1px solid #E0D5C7;border-radius:8px;white-space:pre-wrap;min-height:80px;color:#1A1A1A;font-size:15px;line-height:1.6}
+.copy-btn{margin-top:10px;padding:8px 16px;background:white;border:1px solid #8B2E1F;color:#8B2E1F;border-radius:6px;cursor:pointer;font-size:13px}
+</style>
+</head>
+<body>
+<a href="index.html" class="back">← Accueil</a>
+<h1>🍽️ Générateur de descriptions de menu</h1>
+
+<label>Nom du plat</label>
+<input type="text" id="nom" placeholder="Risotto aux champignons des bois">
+
+<label>Catégorie</label>
+<div class="tags" id="cats">
+  <div class="tag active" onclick="selectTag(this,'cats')">Entrée</div>
+  <div class="tag" onclick="selectTag(this,'cats')">Plat principal</div>
+  <div class="tag" onclick="selectTag(this,'cats')">Dessert</div>
+  <div class="tag" onclick="selectTag(this,'cats')">Boisson</div>
+</div>
+
+<label>Ingrédients</label>
+<div class="chips" id="chips-ing"></div>
+<div class="add-row">
+  <input type="text" id="input-ing" placeholder="Ex : champignons de Paris">
+  <button onclick="ajouterChip()">+ Ajouter</button>
+</div>
+
+<label>Technique de préparation (optionnel)</label>
+<input type="text" id="technique" placeholder="Mijoté lentement, crémeux au parmesan">
+
+<label>Style de cuisine</label>
+<div class="tags" id="styles">
+  <div class="tag active" onclick="selectTag(this,'styles')">Française</div>
+  <div class="tag" onclick="selectTag(this,'styles')">Italienne</div>
+  <div class="tag" onclick="selectTag(this,'styles')">Asiatique</div>
+  <div class="tag" onclick="selectTag(this,'styles')">Méditerranéenne</div>
+  <div class="tag" onclick="selectTag(this,'styles')">Fusion</div>
+</div>
+
+<label>Allergènes (optionnel)</label>
+<input type="text" id="allergenes" placeholder="Gluten, fruits à coque...">
+
+<label>Ton</label>
+<div class="tags" id="tons">
+  <div class="tag active" onclick="selectTag(this,'tons')">Gourmand</div>
+  <div class="tag" onclick="selectTag(this,'tons')">Sobre</div>
+  <div class="tag" onclick="selectTag(this,'tons')">Festif</div>
+</div>
+
+<button class="gen" onclick="generer()" id="btn">✨ Générer la description</button>
+<div id="resultat">La description apparaîtra ici...</div>
+<button class="copy-btn" onclick="copier()" style="display:none" id="copy-btn">📋 Copier</button>
+
+<script>
+function selectTag(el,group){
+  document.querySelectorAll('#'+group+' .tag').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+}
+function getTag(group){
+  return document.querySelector('#'+group+' .tag.active')?.textContent||'';
+}
+let ingredients=[];
+function ajouterChip(){
+  const input=document.getElementById('input-ing');
+  const val=input.value.trim();
+  if(!val)return;
+  ingredients.push(val);
+  renderChips();
+  input.value='';
+}
+function supprimerChip(i){
+  ingredients.splice(i,1);
+  renderChips();
+}
+function renderChips(){
+  document.getElementById('chips-ing').innerHTML=ingredients.map((f,i)=>`<div class="chip">${f}<span onclick="supprimerChip(${i})">×</span></div>`).join('');
+}
+async function generer(){
+  const btn=document.getElementById('btn');
+  const res=document.getElementById('resultat');
+  btn.disabled=true;btn.textContent='Génération en cours...';
+  res.textContent='';
+  document.getElementById('copy-btn').style.display='none';
+  const prompt=`Tu es rédacteur spécialisé en cartes de restaurant. Rédige une description de plat courte, appétissante et professionnelle en français à partir de ces informations :
+Nom du plat : ${document.getElementById('nom').value}
+Catégorie : ${getTag('cats')}
+Ingrédients : ${ingredients.join(', ')||'non précisés'}
+Technique : ${document.getElementById('technique').value||'non précisée'}
+Style de cuisine : ${getTag('styles')}
+Allergènes : ${document.getElementById('allergenes').value||'aucun'}
+Ton : ${getTag('tons')}
+Consignes : 1 à 2 phrases maximum, style concis d'une carte de restaurant. Si allergènes, ajoute une mention entre parenthèses à la fin. N'invente aucun ingrédient. Réponds uniquement avec la description.`;
+  try{
+    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:500,messages:[{role:'user',content:prompt}]})});
+    const d=await r.json();
+    res.textContent=d.content.map(b=>b.text||'').join('\n');
+    document.getElementById('copy-btn').style.display='inline-block';
+  }catch(e){res.textContent='Erreur, réessaie.';}
+  btn.disabled=false;btn.textContent='✨ Générer la description';
+}
+function copier(){
+  navigator.clipboard.writeText(document.getElementById('resultat').textContent);
+  document.getElementById('copy-btn').textContent='✅ Copié !';
+  setTimeout(()=>document.getElementById('copy-btn').textContent='📋 Copier',2000);
+}
+</script>
+</body>
+  </html>
