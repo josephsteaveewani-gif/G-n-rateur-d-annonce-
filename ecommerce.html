@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fiches produits e-commerce</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:sans-serif;background:#EEF2F7;padding:20px}
+.back{color:#1A3A5C;text-decoration:none;font-size:14px}
+h1{color:#1A3A5C;font-size:22px;margin:10px 0 20px}
+label{display:block;margin-top:15px;font-weight:bold;color:#1A1A1A;font-size:14px}
+input,textarea,select{width:100%;padding:10px;margin-top:5px;border:1px solid #C8D5E0;border-radius:6px;font-size:15px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.tag{padding:6px 12px;border-radius:20px;font-size:13px;cursor:pointer;border:1px solid #C8D5E0;background:white}
+.tag.active{background:#1A3A5C;color:white;border-color:#1A3A5C}
+.add-row{display:flex;gap:8px;margin-top:8px}
+.add-row input{flex:1}
+.add-row button{padding:8px 14px;background:#1A3A5C;color:white;border:none;border-radius:6px;cursor:pointer;font-size:13px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chip{padding:5px 10px;border-radius:20px;font-size:12px;display:flex;align-items:center;gap:5px;background:#2E6B9E;color:white}
+.chip span{cursor:pointer}
+button.gen{width:100%;padding:14px;margin-top:20px;background:#1A3A5C;color:white;border:none;border-radius:8px;font-size:16px;cursor:pointer;font-weight:bold}
+button.gen:disabled{background:#ccc}
+#resultat{margin-top:20px;padding:15px;background:white;border:1px solid #C8D5E0;border-radius:8px;white-space:pre-wrap;min-height:80px;color:#1A1A1A;font-size:15px;line-height:1.6}
+.copy-btn{margin-top:10px;padding:8px 16px;background:white;border:1px solid #1A3A5C;color:#1A3A5C;border-radius:6px;cursor:pointer;font-size:13px}
+</style>
+</head>
+<body>
+<a href="index.html" class="back">← Accueil</a>
+<h1>🛍️ Générateur de fiches produits</h1>
+
+<label>Nom du produit</label>
+<input type="text" id="nom" placeholder="Montre connectée Sport Pro">
+
+<label>Catégorie</label>
+<div class="tags" id="cats">
+  <div class="tag active" onclick="selectTag(this,'cats')">Mode</div>
+  <div class="tag" onclick="selectTag(this,'cats')">Électronique</div>
+  <div class="tag" onclick="selectTag(this,'cats')">Maison</div>
+  <div class="tag" onclick="selectTag(this,'cats')">Sport</div>
+  <div class="tag" onclick="selectTag(this,'cats')">Beauté</div>
+  <div class="tag" onclick="selectTag(this,'cats')">Alimentaire</div>
+</div>
+
+<label>Caractéristiques du produit</label>
+<div class="chips" id="chips-carac"></div>
+<div class="add-row">
+  <input type="text" id="input-carac" placeholder="Ex : étanche 50m, autonomie 7 jours">
+  <button onclick="ajouterChip()">+ Ajouter</button>
+</div>
+
+<label>Prix (€)</label>
+<input type="number" id="prix" placeholder="49.99">
+
+<label>Public cible (optionnel)</label>
+<input type="text" id="cible" placeholder="Sportifs, professionnels, familles...">
+
+<label>Avantages clés (optionnel)</label>
+<textarea id="avantages" rows="3" placeholder="Résistant, léger, design élégant..."></textarea>
+
+<label>Ton</label>
+<div class="tags" id="tons">
+  <div class="tag active" onclick="selectTag(this,'tons')">Dynamique</div>
+  <div class="tag" onclick="selectTag(this,'tons')">Premium</div>
+  <div class="tag" onclick="selectTag(this,'tons')">Accessible</div>
+  <div class="tag" onclick="selectTag(this,'tons')">Technique</div>
+</div>
+
+<label>Longueur de la description</label>
+<div class="tags" id="longueurs">
+  <div class="tag active" onclick="selectTag(this,'longueurs')">Courte (1-2 phrases)</div>
+  <div class="tag" onclick="selectTag(this,'longueurs')">Moyenne (1 paragraphe)</div>
+  <div class="tag" onclick="selectTag(this,'longueurs')">Longue (2-3 paragraphes)</div>
+</div>
+
+<button class="gen" onclick="generer()" id="btn">✨ Générer la fiche produit</button>
+<div id="resultat">La description apparaîtra ici...</div>
+<button class="copy-btn" onclick="copier()" style="display:none" id="copy-btn">📋 Copier</button>
+
+<script>
+function selectTag(el,group){
+  document.querySelectorAll('#'+group+' .tag').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+}
+function getTag(group){
+  return document.querySelector('#'+group+' .tag.active')?.textContent||'';
+}
+let caracs=[];
+function ajouterChip(){
+  const input=document.getElementById('input-carac');
+  const val=input.value.trim();
+  if(!val)return;
+  caracs.push(val);
+  renderChips();
+  input.value='';
+}
+function supprimerChip(i){
+  caracs.splice(i,1);
+  renderChips();
+}
+function renderChips(){
+  document.getElementById('chips-carac').innerHTML=caracs.map((c,i)=>`<div class="chip">${c}<span onclick="supprimerChip(${i})">×</span></div>`).join('');
+}
+async function generer(){
+  const btn=document.getElementById('btn');
+  const res=document.getElementById('resultat');
+  btn.disabled=true;btn.textContent='Génération en cours...';
+  res.textContent='';
+  document.getElementById('copy-btn').style.display='none';
+  const prompt=`Tu es rédacteur spécialisé en fiches produits e-commerce. Rédige une description de produit professionnelle, convaincante et optimisée pour la vente en ligne en français, à partir de ces informations :
+Nom du produit : ${document.getElementById('nom').value}
+Catégorie : ${getTag('cats')}
+Caractéristiques : ${caracs.join(', ')||'non précisées'}
+Prix : ${document.getElementById('prix').value||'non précisé'} €
+Public cible : ${document.getElementById('cible').value||'non précisé'}
+Avantages clés : ${document.getElementById('avantages').value||'non précisés'}
+Ton : ${getTag('tons')}
+Longueur souhaitée : ${getTag('longueurs')}
+Consignes : mets en avant les bénéfices pour l'acheteur (pas juste les caractéristiques techniques), utilise un vocabulaire engageant. N'invente aucune caractéristique non fournie. Réponds uniquement avec le texte de la description.`;
+  try{
+    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:800,messages:[{role:'user',content:prompt}]})});
+    const d=await r.json();
+    res.textContent=d.content.map(b=>b.text||'').join('\n');
+    document.getElementById('copy-btn').style.display='inline-block';
+  }catch(e){res.textContent='Erreur, réessaie.';}
+  btn.disabled=false;btn.textContent='✨ Générer la fiche produit';
+}
+function copier(){
+  navigator.clipboard.writeText(document.getElementById('resultat').textContent);
+  document.getElementById('copy-btn').textContent='✅ Copié !';
+  setTimeout(()=>document.getElementById('copy-btn').textContent='📋 Copier',2000);
+}
+</script>
+</body>
+  </html>
