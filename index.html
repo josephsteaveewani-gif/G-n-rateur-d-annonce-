@@ -5,84 +5,132 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IA Pro Tools - Génération de contenu</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',sans-serif;background:#0A0A0A;color:#fff;min-height:100vh}
-header{background:linear-gradient(135deg,#0A0A0A 0%,#1A1A1A 100%);padding:60px 20px 50px;text-align:center;border-bottom:1px solid #C9A84C33;position:relative;overflow:hidden}
-header::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(ellipse at center,#C9A84C0A 0%,transparent 70%);pointer-events:none}
-.logo{font-size:13px;letter-spacing:4px;color:#C9A84C;text-transform:uppercase;margin-bottom:20px;font-weight:500}
-header h1{font-family:'Playfair Display',serif;font-size:36px;margin-bottom:15px;line-height:1.2;background:linear-gradient(135deg,#fff 0%,#C9A84C 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-header p{color:#888;font-size:15px;margin-bottom:35px;font-weight:300;max-width:400px;margin-left:auto;margin-right:auto;line-height:1.6}
-.cta-btn{display:inline-block;padding:14px 35px;background:linear-gradient(135deg,#C9A84C,#F0D080);color:#0A0A0A;border-radius:3px;font-weight:600;font-size:14px;text-decoration:none;letter-spacing:1px;text-transform:uppercase}
-.section-title{text-align:center;padding:40px 20px 20px;font-family:'Playfair Display',serif;font-size:22px;color:#C9A84C;letter-spacing:2px;text-transform:uppercase}
-.divider{width:60px;height:1px;background:linear-gradient(90deg,transparent,#C9A84C,transparent);margin:0 auto 30px}
-.cards{display:flex;flex-direction:column;gap:15px;max-width:600px;margin:0 auto 20px;padding:0 20px}
-.card{background:#111;border:1px solid #222;border-radius:4px;padding:25px;text-decoration:none;color:inherit;position:relative;overflow:hidden;transition:border-color 0.3s}
-.card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%}
-.card.immo::before{background:linear-gradient(180deg,#C9A84C,#8B6914)}
-.card.resto::before{background:linear-gradient(180deg,#C9A84C,#8B6914)}
-.card.ecom::before{background:linear-gradient(180deg,#C9A84C,#8B6914)}
-.card-header{display:flex;align-items:center;gap:12px;margin-bottom:12px}
-.card-icon{width:40px;height:40px;background:#1A1A1A;border:1px solid #C9A84C33;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:18px}
-.card h2{font-size:16px;color:#fff;font-weight:500}
-.card p{font-size:13px;color:#666;line-height:1.6;margin-bottom:15px}
-.card .btn{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:#C9A84C;font-weight:500;letter-spacing:1px;text-transform:uppercase}
-.tarif-section{max-width:600px;margin:20px auto 40px;padding:0 20px}
-.tarif{background:#111;border:1px solid #C9A84C33;border-radius:4px;padding:35px 25px;text-align:center;position:relative;overflow:hidden}
-.tarif::before{content:'OFFRE';position:absolute;top:12px;right:15px;font-size:9px;letter-spacing:3px;color:#C9A84C;font-weight:600}
-.tarif h2{font-family:'Playfair Display',serif;font-size:20px;color:#fff;margin-bottom:5px}
-.tarif .prix{font-size:42px;font-weight:700;background:linear-gradient(135deg,#C9A84C,#F0D080);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:15px 0 5px}
-.tarif .prix span{font-size:16px;font-weight:300;color:#666;-webkit-text-fill-color:#666}
-.tarif .desc{color:#555;font-size:13px;margin-bottom:25px;line-height:1.6}
-.tarif .features{list-style:none;margin-bottom:25px;text-align:left}
-.tarif .features li{padding:8px 0;color:#888;font-size:13px;border-bottom:1px solid #1A1A1A;display:flex;align-items:center;gap:8px}
-.tarif .features li::before{content:'◆';color:#C9A84C;font-size:8px}
-.tarif a{display:inline-block;width:100%;padding:14px;background:linear-gradient(135deg,#C9A84C,#F0D080);color:#0A0A0A;border-radius:3px;font-weight:600;font-size:14px;text-decoration:none;letter-spacing:1px;text-transform:uppercase}
-footer{text-align:center;padding:30px;color:#333;font-size:12px;border-top:1px solid #1A1A1A;letter-spacing:2px;text-transform:uppercase}
+body{font-family:'Poppins',sans-serif;background:#fff;overflow-x:hidden}
+
+/* HERO */
+.hero{min-height:100vh;background:linear-gradient(135deg,#667eea 0%,#764ba2 50%,#f093fb 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 20px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;width:600px;height:600px;background:rgba(255,255,255,0.05);border-radius:50%;top:-200px;right:-200px;animation:float 8s ease-in-out infinite}
+.hero::after{content:'';position:absolute;width:400px;height:400px;background:rgba(255,255,255,0.05);border-radius:50%;bottom:-150px;left:-150px;animation:float 6s ease-in-out infinite reverse}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-30px)}}
+.badge{background:rgba(255,255,255,0.2);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.3);color:white;padding:8px 20px;border-radius:50px;font-size:12px;font-weight:500;letter-spacing:2px;text-transform:uppercase;margin-bottom:25px;display:inline-block;animation:fadeInDown 0.8s ease}
+@keyframes fadeInDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+.hero h1{font-size:38px;font-weight:800;color:white;line-height:1.2;margin-bottom:15px;animation:fadeInUp 0.8s ease 0.2s both}
+.hero h1 span{background:linear-gradient(90deg,#FFD700,#FFA500);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.hero p{color:rgba(255,255,255,0.85);font-size:15px;line-height:1.7;max-width:380px;margin-bottom:35px;font-weight:300;animation:fadeInUp 0.8s ease 0.4s both}
+.hero-btns{display:flex;flex-direction:column;gap:12px;width:100%;max-width:300px;animation:fadeInUp 0.8s ease 0.6s both}
+.btn-primary{padding:16px 30px;background:white;color:#764ba2;border-radius:50px;font-weight:700;font-size:15px;text-decoration:none;box-shadow:0 10px 30px rgba(0,0,0,0.2);transition:transform 0.2s,box-shadow 0.2s}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 15px 40px rgba(0,0,0,0.3)}
+.btn-secondary{padding:14px 30px;background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);border:2px solid rgba(255,255,255,0.4);color:white;border-radius:50px;font-weight:600;font-size:14px;text-decoration:none}
+.stats{display:flex;justify-content:center;gap:30px;margin-top:40px;animation:fadeInUp 0.8s ease 0.8s both}
+.stat{text-align:center}
+.stat .num{font-size:24px;font-weight:800;color:white}
+.stat .label{font-size:11px;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:1px}
+
+/* OUTILS */
+.section{padding:60px 20px}
+.section-header{text-align:center;margin-bottom:40px}
+.section-header .tag{background:#667eea15;color:#667eea;padding:6px 16px;border-radius:50px;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;display:inline-block;margin-bottom:12px}
+.section-header h2{font-size:28px;font-weight:800;color:#1a1a2e;margin-bottom:8px}
+.section-header p{color:#888;font-size:14px}
+.cards{display:flex;flex-direction:column;gap:20px;max-width:500px;margin:0 auto}
+.card{background:white;border-radius:20px;padding:25px;text-decoration:none;color:inherit;box-shadow:0 5px 20px rgba(0,0,0,0.08);border:1px solid #f0f0f0;transition:transform 0.3s,box-shadow 0.3s;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
+.card.immo::before{background:linear-gradient(90deg,#667eea,#764ba2)}
+.card.resto::before{background:linear-gradient(90deg,#f093fb,#f5576c)}
+.card.ecom::before{background:linear-gradient(90deg,#4facfe,#00f2fe)}
+.card:hover{transform:translateY(-5px);box-shadow:0 15px 40px rgba(0,0,0,0.15)}
+.card-top{display:flex;align-items:center;gap:15px;margin-bottom:12px}
+.card-icon{width:50px;height:50px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.card.immo .card-icon{background:linear-gradient(135deg,#667eea20,#764ba220)}
+.card.resto .card-icon{background:linear-gradient(135deg,#f093fb20,#f5576c20)}
+.card.ecom .card-icon{background:linear-gradient(135deg,#4facfe20,#00f2fe20)}
+.card h3{font-size:17px;font-weight:700;color:#1a1a2e}
+.card p{font-size:13px;color:#888;line-height:1.6;margin-bottom:15px}
+.card-link{font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;display:flex;align-items:center;gap:5px}
+.card.immo .card-link{color:#667eea}
+.card.resto .card-link{color:#f5576c}
+.card.ecom .card-link{color:#4facfe}
+
+/* TARIF */
+.tarif-section{padding:0 20px 60px}
+.tarif{background:linear-gradient(135deg,#667eea,#764ba2);border-radius:24px;padding:40px 25px;text-align:center;max-width:500px;margin:0 auto;position:relative;overflow:hidden;box-shadow:0 20px 60px rgba(102,126,234,0.4)}
+.tarif::before{content:'⭐ POPULAIRE';position:absolute;top:15px;right:15px;background:rgba(255,255,255,0.2);color:white;font-size:10px;font-weight:700;letter-spacing:2px;padding:5px 10px;border-radius:50px}
+.tarif h2{font-size:22px;font-weight:800;color:white;margin-bottom:5px}
+.tarif .prix{font-size:48px;font-weight:800;color:white;margin:15px 0 5px;line-height:1}
+.tarif .prix span{font-size:16px;font-weight:400;opacity:0.8}
+.tarif .desc{color:rgba(255,255,255,0.8);font-size:13px;margin-bottom:25px}
+.features{list-style:none;margin-bottom:30px;text-align:left}
+.features li{color:rgba(255,255,255,0.9);font-size:13px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;gap:10px}
+.features li::before{content:'✓';background:rgba(255,255,255,0.2);width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
+.tarif-btn{display:block;padding:16px;background:white;color:#764ba2;border-radius:50px;font-weight:700;font-size:15px;text-decoration:none;box-shadow:0 10px 30px rgba(0,0,0,0.2)}
+
+/* FOOTER */
+footer{background:#1a1a2e;color:#555;text-align:center;padding:25px;font-size:12px;letter-spacing:1px}
+footer span{color:#667eea}
+
+/* SCROLL ANIMATION */
+.animate{opacity:0;transform:translateY(30px);transition:opacity 0.6s ease,transform 0.6s ease}
+.animate.visible{opacity:1;transform:translateY(0)}
 </style>
 </head>
 <body>
-<header>
-  <div class="logo">✦ IA Pro Tools ✦</div>
-  <h1>Génération de contenu<br>par Intelligence Artificielle</h1>
-  <p>Des descriptions professionnelles en quelques secondes, pour propulser votre activité.</p>
-  <a href="inscription.html" class="cta-btn">🚀 Commencer maintenant</a>
-</header>
 
-<div class="section-title">Nos outils</div>
-<div class="divider"></div>
+<section class="hero">
+  <div class="badge">✦ Intelligence Artificielle ✦</div>
+  <h1>Créez du contenu<br><span>professionnel</span><br>en secondes</h1>
+  <p>Des annonces immobilières, descriptions de menu et fiches produits générées automatiquement par l'IA pour propulser votre activité.</p>
+  <div class="hero-btns">
+    <a href="inscription.html" class="btn-primary">🚀 Commencer gratuitement</a>
+    <a href="#outils" class="btn-secondary">Découvrir les outils ↓</a>
+  </div>
+  <div class="stats">
+    <div class="stat"><div class="num">3</div><div class="label">Outils IA</div></div>
+    <div class="stat"><div class="num">∞</div><div class="label">Générations</div></div>
+    <div class="stat"><div class="num">24/7</div><div class="label">Disponible</div></div>
+  </div>
+</section>
 
-<div class="cards">
-  <a href="inscription.html" class="card immo">
-    <div class="card-header">
-      <div class="card-icon">🏠</div>
-      <h2>Annonces immobilières</h2>
-    </div>
-    <p>Générez des annonces professionnelles et attrayantes à partir des infos du bien. Idéal pour les agences immobilières.</p>
-    <span class="btn">Accéder à l'outil →</span>
-  </a>
-  <a href="inscription.html" class="card resto">
-    <div class="card-header">
-      <div class="card-icon">🍽️</div>
-      <h2>Descriptions de menu</h2>
-    </div>
-    <p>Rédigez des descriptions de plats appétissantes pour votre carte, site web ou plateformes de livraison.</p>
-    <span class="btn">Accéder à l'outil →</span>
-  </a>
-  <a href="inscription.html" class="card ecom">
-    <div class="card-header">
-      <div class="card-icon">🛍️</div>
-      <h2>Fiches produits e-commerce</h2>
-    </div>
-    <p>Créez des descriptions produits optimisées et convaincantes pour votre boutique en ligne.</p>
-    <span class="btn">Accéder à l'outil →</span>
-  </a>
-</div>
+<section class="section" id="outils">
+  <div class="section-header animate">
+    <div class="tag">Nos outils</div>
+    <h2>Tout ce dont vous avez besoin</h2>
+    <p>3 outils puissants pour votre activité</p>
+  </div>
+  <div class="cards">
+    <a href="inscription.html" class="card immo animate">
+      <div class="card-top">
+        <div class="card-icon">🏠</div>
+        <h3>Annonces immobilières</h3>
+      </div>
+      <p>Générez des annonces professionnelles et attrayantes à partir des infos du bien. Idéal pour les agences immobilières.</p>
+      <div class="card-link">Accéder à l'outil <span>→</span></div>
+    </a>
+    <a href="inscription.html" class="card resto animate">
+      <div class="card-top">
+        <div class="card-icon">🍽️</div>
+        <h3>Descriptions de menu</h3>
+      </div>
+      <p>Rédigez des descriptions de plats appétissantes pour votre carte, site web ou plateformes de livraison.</p>
+      <div class="card-link">Accéder à l'outil <span>→</span></div>
+    </a>
+    <a href="inscription.html" class="card ecom animate">
+      <div class="card-top">
+        <div class="card-icon">🛍️</div>
+        <h3>Fiches produits e-commerce</h3>
+      </div>
+      <p>Créez des descriptions produits optimisées et convaincantes pour votre boutique en ligne.</p>
+      <div class="card-link">Accéder à l'outil <span>→</span></div>
+    </a>
+  </div>
+</section>
 
-<div class="tarif-section">
-  <div class="tarif">
+<section class="tarif-section">
+  <div class="tarif animate">
     <h2>Abonnement Mensuel</h2>
-    <div class="prix">15 000 <span>FCFA/mois</span></div>
+    <div class="prix">15 000<span> FCFA/mois</span></div>
     <p class="desc">Accès illimité à tous les outils + support WhatsApp</p>
     <ul class="features">
       <li>Annonces immobilières illimitées</li>
@@ -91,10 +139,19 @@ footer{text-align:center;padding:30px;color:#333;font-size:12px;border-top:1px s
       <li>Support WhatsApp inclus</li>
       <li>Mises à jour gratuites</li>
     </ul>
-    <a href="inscription.html">S'abonner maintenant →</a>
+    <a href="inscription.html" class="tarif-btn">S'abonner maintenant →</a>
   </div>
-</div>
+</section>
 
-<footer>Propulsé par l'intelligence artificielle • Brazzaville, Congo 🇨🇬</footer>
+<footer>
+  Propulsé par <span>l'Intelligence Artificielle</span> • Brazzaville, Congo 🇨🇬
+</footer>
+
+<script>
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible')}});
+},{threshold:0.1});
+document.querySelectorAll('.animate').forEach(el=>observer.observe(el));
+</script>
 </body>
 </html>
