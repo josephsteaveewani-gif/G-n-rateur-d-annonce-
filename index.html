@@ -8,8 +8,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Poppins',sans-serif;background:#fff;overflow-x:hidden}
-
-/* HERO */
 .hero{min-height:100vh;background:linear-gradient(135deg,#667eea 0%,#764ba2 50%,#f093fb 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 20px;position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;width:600px;height:600px;background:rgba(255,255,255,0.05);border-radius:50%;top:-200px;right:-200px;animation:float 8s ease-in-out infinite}
 .hero::after{content:'';position:absolute;width:400px;height:400px;background:rgba(255,255,255,0.05);border-radius:50%;bottom:-150px;left:-150px;animation:float 6s ease-in-out infinite reverse}
@@ -21,11 +19,9 @@ body{font-family:'Poppins',sans-serif;background:#fff;overflow-x:hidden}
 @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
 .hero p{color:rgba(255,255,255,0.85);font-size:15px;line-height:1.7;max-width:380px;margin-bottom:35px;font-weight:300;animation:fadeInUp 0.8s ease 0.4s both}
 .hero-btns{display:flex;flex-direction:column;gap:12px;width:100%;max-width:300px;animation:fadeInUp 0.8s ease 0.6s both}
-.btn-primary{padding:16px 30px;background:white;color:#764ba2;border-radius:50px;font-weight:700;font-size:15px;text-decoration:none;box-shadow:0 10px 30px rgba(0,0,0,0.2);transition:transform 0.2s,box-shadow 0.2s}
-.btn-primary:hover{transform:translateY(-3px);box-shadow:0 15px 40px rgba(0,0,0,0.3)}
+.btn-primary{padding:16px 30px;background:white;color:#764ba2;border-radius:50px;font-weight:700;font-size:15px;text-decoration:none;box-shadow:0 10px 30px rgba(0,0,0,0.2)}
 .btn-secondary{padding:14px 30px;background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);border:2px solid rgba(255,255,255,0.4);color:white;border-radius:50px;font-weight:600;font-size:14px;text-decoration:none}
 .stats{display:flex;justify-content:center;gap:30px;margin-top:40px;animation:fadeInUp 0.8s ease 0.8s both}
-.stat{text-align:center}
 .stat .num{font-size:24px;font-weight:800;color:white}
 .stat .label{font-size:11px;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:1px}
 
@@ -54,24 +50,30 @@ body{font-family:'Poppins',sans-serif;background:#fff;overflow-x:hidden}
 .card.resto .card-link{color:#f5576c}
 .card.ecom .card-link{color:#4facfe}
 
-/* TARIF */
-.tarif-section{padding:0 20px 60px}
-.tarif{background:linear-gradient(135deg,#667eea,#764ba2);border-radius:24px;padding:40px 25px;text-align:center;max-width:500px;margin:0 auto;position:relative;overflow:hidden;box-shadow:0 20px 60px rgba(102,126,234,0.4)}
-.tarif::before{content:'⭐ POPULAIRE';position:absolute;top:15px;right:15px;background:rgba(255,255,255,0.2);color:white;font-size:10px;font-weight:700;letter-spacing:2px;padding:5px 10px;border-radius:50px}
-.tarif h2{font-size:22px;font-weight:800;color:white;margin-bottom:5px}
-.tarif .prix{font-size:48px;font-weight:800;color:white;margin:15px 0 5px;line-height:1}
-.tarif .prix span{font-size:16px;font-weight:400;opacity:0.8}
-.tarif .desc{color:rgba(255,255,255,0.8);font-size:13px;margin-bottom:25px}
-.features{list-style:none;margin-bottom:30px;text-align:left}
-.features li{color:rgba(255,255,255,0.9);font-size:13px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;gap:10px}
-.features li::before{content:'✓';background:rgba(255,255,255,0.2);width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
-.tarif-btn{display:block;padding:16px;background:white;color:#764ba2;border-radius:50px;font-weight:700;font-size:15px;text-decoration:none;box-shadow:0 10px 30px rgba(0,0,0,0.2)}
+/* TARIFS */
+.tarif-section{padding:20px 20px 60px;background:#f8f9ff}
+.tarif-header{text-align:center;margin-bottom:30px}
+.tarif-header .tag{background:#667eea15;color:#667eea;padding:6px 16px;border-radius:50px;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;display:inline-block;margin-bottom:12px}
+.tarif-header h2{font-size:26px;font-weight:800;color:#1a1a2e;margin-bottom:8px}
+.tarif-header p{color:#888;font-size:13px}
+.tarifs{display:flex;flex-direction:column;gap:15px;max-width:500px;margin:0 auto}
+.tarif-card{background:white;border-radius:20px;padding:25px;box-shadow:0 5px 20px rgba(0,0,0,0.06);border:2px solid transparent;position:relative;overflow:hidden}
+.tarif-card.popular{border-color:#667eea;box-shadow:0 10px 40px rgba(102,126,234,0.2)}
+.popular-badge{position:absolute;top:12px;right:12px;background:linear-gradient(135deg,#667eea,#764ba2);color:white;font-size:10px;font-weight:700;letter-spacing:1px;padding:4px 10px;border-radius:50px}
+.tarif-card h3{font-size:16px;font-weight:700;color:#1a1a2e;margin-bottom:5px}
+.tarif-card .outils-inclus{font-size:12px;color:#888;margin-bottom:15px}
+.tarif-card .outils-inclus span{background:#667eea10;color:#667eea;padding:3px 8px;border-radius:50px;font-size:11px;font-weight:600;margin-right:4px;display:inline-block;margin-bottom:4px}
+.tarif-card .prix-tarif{font-size:32px;font-weight:800;color:#1a1a2e;margin-bottom:3px}
+.tarif-card .prix-tarif small{font-size:14px;font-weight:400;color:#888}
+.tarif-card .desc-tarif{font-size:12px;color:#aaa;margin-bottom:20px}
+.tarif-card a{display:block;padding:13px;text-align:center;border-radius:50px;font-weight:700;font-size:14px;text-decoration:none}
+.tarif-card.basic a{background:#f0f0f0;color:#1a1a2e}
+.tarif-card.popular a{background:linear-gradient(135deg,#667eea,#764ba2);color:white;box-shadow:0 8px 20px rgba(102,126,234,0.3)}
+.tarif-card.pack a{background:linear-gradient(135deg,#f093fb,#f5576c);color:white;box-shadow:0 8px 20px rgba(245,87,108,0.3)}
 
-/* FOOTER */
 footer{background:#1a1a2e;color:#555;text-align:center;padding:25px;font-size:12px;letter-spacing:1px}
 footer span{color:#667eea}
 
-/* SCROLL ANIMATION */
 .animate{opacity:0;transform:translateY(30px);transition:opacity 0.6s ease,transform 0.6s ease}
 .animate.visible{opacity:1;transform:translateY(0)}
 </style>
@@ -81,9 +83,9 @@ footer span{color:#667eea}
 <section class="hero">
   <div class="badge">✦ Intelligence Artificielle ✦</div>
   <h1>Créez du contenu<br><span>professionnel</span><br>en secondes</h1>
-  <p>Des annonces immobilières, descriptions de menu et fiches produits générées automatiquement par l'IA pour propulser votre activité.</p>
+  <p>Des annonces immobilières, descriptions de menu et fiches produits générées automatiquement par l'IA.</p>
   <div class="hero-btns">
-    <a href="inscription.html" class="btn-primary">🚀 Commencer gratuitement</a>
+    <a href="inscription.html" class="btn-primary">🚀 Commencer maintenant</a>
     <a href="#outils" class="btn-secondary">Découvrir les outils ↓</a>
   </div>
   <div class="stats">
@@ -106,7 +108,7 @@ footer span{color:#667eea}
         <h3>Annonces immobilières</h3>
       </div>
       <p>Générez des annonces professionnelles et attrayantes à partir des infos du bien. Idéal pour les agences immobilières.</p>
-      <div class="card-link">Accéder à l'outil <span>→</span></div>
+      <div class="card-link">Accéder à l'outil →</div>
     </a>
     <a href="inscription.html" class="card resto animate">
       <div class="card-top">
@@ -114,7 +116,7 @@ footer span{color:#667eea}
         <h3>Descriptions de menu</h3>
       </div>
       <p>Rédigez des descriptions de plats appétissantes pour votre carte, site web ou plateformes de livraison.</p>
-      <div class="card-link">Accéder à l'outil <span>→</span></div>
+      <div class="card-link">Accéder à l'outil →</div>
     </a>
     <a href="inscription.html" class="card ecom animate">
       <div class="card-top">
@@ -122,24 +124,50 @@ footer span{color:#667eea}
         <h3>Fiches produits e-commerce</h3>
       </div>
       <p>Créez des descriptions produits optimisées et convaincantes pour votre boutique en ligne.</p>
-      <div class="card-link">Accéder à l'outil <span>→</span></div>
+      <div class="card-link">Accéder à l'outil →</div>
     </a>
   </div>
 </section>
 
-<section class="tarif-section">
-  <div class="tarif animate">
-    <h2>Abonnement Mensuel</h2>
-    <div class="prix">15 000<span> FCFA/mois</span></div>
-    <p class="desc">Accès illimité à tous les outils + support WhatsApp</p>
-    <ul class="features">
-      <li>Annonces immobilières illimitées</li>
-      <li>Descriptions de menu illimitées</li>
-      <li>Fiches produits illimitées</li>
-      <li>Support WhatsApp inclus</li>
-      <li>Mises à jour gratuites</li>
-    </ul>
-    <a href="inscription.html" class="tarif-btn">S'abonner maintenant →</a>
+<section class="tarif-section" id="tarifs">
+  <div class="tarif-header animate">
+    <div class="tag">Tarifs</div>
+    <h2>Choisissez votre formule</h2>
+    <p>Payez uniquement ce dont vous avez besoin</p>
+  </div>
+  <div class="tarifs">
+    <div class="tarif-card basic animate">
+      <h3>🎯 Outil individuel</h3>
+      <div class="outils-inclus">
+        <span>🏠 Immobilier</span>
+        <span>🍽️ Restaurant</span>
+        <span>🛍️ E-commerce</span>
+      </div>
+      <div class="prix-tarif">15 000 <small>FCFA/mois</small></div>
+      <div class="desc-tarif">1 outil au choix, accès illimité</div>
+      <a href="inscription.html">Choisir un outil →</a>
+    </div>
+    <div class="tarif-card popular animate">
+      <div class="popular-badge">⭐ POPULAIRE</div>
+      <h3>🔥 Duo — 2 outils</h3>
+      <div class="outils-inclus">
+        <span>2 outils au choix</span>
+      </div>
+      <div class="prix-tarif">30 000 <small>FCFA/mois</small></div>
+      <div class="desc-tarif">Économisez 15 000 FCFA vs 2 abonnements séparés</div>
+      <a href="inscription.html">Choisir 2 outils →</a>
+    </div>
+    <div class="tarif-card pack animate">
+      <h3>💎 Pack complet — 3 outils</h3>
+      <div class="outils-inclus">
+        <span>🏠 Immobilier</span>
+        <span>🍽️ Restaurant</span>
+        <span>🛍️ E-commerce</span>
+      </div>
+      <div class="prix-tarif">45 000 <small>FCFA/mois</small></div>
+      <div class="desc-tarif">Accès illimité à tous les outils + support WhatsApp prioritaire</div>
+      <a href="inscription.html">Tout débloquer →</a>
+    </div>
   </div>
 </section>
 
