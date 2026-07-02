@@ -3,61 +3,142 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Inscription - Outils IA</title>
+<title>Inscription - IA Pro Tools</title>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:sans-serif;background:#F5F5F0;padding:20px}
-.back{color:#1A1A2E;text-decoration:none;font-size:14px}
-h1{color:#1A1A2E;font-size:24px;margin:15px 0 5px}
-.subtitle{color:#666;font-size:14px;margin-bottom:25px}
-.card{background:white;border-radius:12px;padding:25px;margin-bottom:20px}
-.card h2{color:#1A1A2E;font-size:16px;margin-bottom:15px}
-label{display:block;font-size:13px;font-weight:bold;color:#333;margin-top:12px;margin-bottom:4px}
-input,select{width:100%;padding:12px;border:1px solid #ddd;border-radius:8px;font-size:15px}
-input:focus,select:focus{outline:none;border-color:#1A1A2E}
-.avantages{list-style:none;margin:10px 0}
-.avantages li{padding:6px 0;color:#444;font-size:14px}
-.avantages li::before{content:"✓ ";color:#1F3D2E;font-weight:bold}
-.submit-btn{width:100%;padding:14px;background:#1A1A2E;color:white;border:none;border-radius:8px;font-size:16px;font-weight:bold;cursor:pointer;margin-top:20px}
-.submit-btn:disabled{background:#ccc}
-.error{color:red;font-size:13px;margin-top:5px;display:none}
+body{font-family:'Poppins',sans-serif;background:#f8f9ff;min-height:100vh}
+
+/* HEADER */
+.top-bar{background:linear-gradient(135deg,#667eea,#764ba2);padding:15px 20px;display:flex;align-items:center;gap:10px}
+.top-bar a{color:rgba(255,255,255,0.8);text-decoration:none;font-size:13px;display:flex;align-items:center;gap:5px}
+.top-bar .brand{color:white;font-weight:700;font-size:15px;margin-left:auto;margin-right:auto}
+
+/* HERO MINI */
+.hero-mini{background:linear-gradient(135deg,#667eea,#764ba2,#f093fb);padding:35px 20px;text-align:center;position:relative;overflow:hidden}
+.hero-mini::before{content:'';position:absolute;width:300px;height:300px;background:rgba(255,255,255,0.05);border-radius:50%;top:-150px;right:-100px}
+.step-indicator{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:20px}
+.step{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+.step.active{background:white;color:#764ba2}
+.step.inactive{background:rgba(255,255,255,0.2);color:rgba(255,255,255,0.7)}
+.step-line{width:30px;height:2px;background:rgba(255,255,255,0.3)}
+.hero-mini h1{font-size:24px;font-weight:800;color:white;margin-bottom:8px}
+.hero-mini p{color:rgba(255,255,255,0.85);font-size:13px;font-weight:300}
+
+/* AVANTAGES */
+.avantages-section{max-width:500px;margin:25px auto 0;padding:0 20px}
+.avantages-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+.avantage-item{background:white;border-radius:12px;padding:15px;display:flex;align-items:center;gap:10px;box-shadow:0 2px 10px rgba(0,0,0,0.05)}
+.avantage-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.avantage-item:nth-child(1) .avantage-icon{background:#667eea15}
+.avantage-item:nth-child(2) .avantage-icon{background:#f093fb15}
+.avantage-item:nth-child(3) .avantage-icon{background:#4facfe15}
+.avantage-item:nth-child(4) .avantage-icon{background:#43e97b15}
+.avantage-text{font-size:12px;font-weight:600;color:#1a1a2e;line-height:1.3}
+
+/* FORM */
+.form-container{max-width:500px;margin:0 auto;padding:0 20px 40px}
+.form-card{background:white;border-radius:20px;padding:25px;box-shadow:0 5px 20px rgba(0,0,0,0.08)}
+.form-card h2{font-size:18px;font-weight:700;color:#1a1a2e;margin-bottom:5px}
+.form-card .subtitle{font-size:13px;color:#888;margin-bottom:20px}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:12px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px}
+.form-group input,.form-group select{width:100%;padding:13px 15px;border:2px solid #f0f0f0;border-radius:12px;font-size:14px;font-family:'Poppins',sans-serif;color:#1a1a2e;transition:border-color 0.2s,box-shadow 0.2s;background:white}
+.form-group input:focus,.form-group select:focus{outline:none;border-color:#667eea;box-shadow:0 0 0 4px #667eea15}
+.form-group input::placeholder{color:#bbb}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.submit-btn{width:100%;padding:16px;background:linear-gradient(135deg,#667eea,#764ba2);color:white;border:none;border-radius:50px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Poppins',sans-serif;margin-top:5px;box-shadow:0 8px 20px rgba(102,126,234,0.3);transition:transform 0.2s}
+.submit-btn:disabled{background:#ccc;box-shadow:none}
+.submit-btn:active{transform:scale(0.98)}
+.error{color:#f5576c;font-size:12px;margin-top:8px;display:none;font-weight:500}
+.divider{display:flex;align-items:center;gap:10px;margin:20px 0}
+.divider span{font-size:12px;color:#bbb}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:#f0f0f0}
+.secure{display:flex;align-items:center;justify-content:center;gap:6px;color:#aaa;font-size:12px;margin-top:15px}
 </style>
 </head>
 <body>
-<a href="index.html" class="back">← Accueil</a>
-<h1>📝 Créer mon compte</h1>
-<p class="subtitle">Inscrivez-vous pour accéder aux outils IA</p>
 
-<div class="card">
-  <h2>✨ Ce que vous obtenez</h2>
-  <ul class="avantages">
-    <li>Accès aux 3 outils IA professionnels</li>
-    <li>Annonces immobilières illimitées</li>
-    <li>Descriptions de menu illimitées</li>
-    <li>Fiches produits illimitées</li>
-    <li>Support WhatsApp inclus</li>
-    <li>Mises à jour gratuites</li>
-  </ul>
+<div class="top-bar">
+  <a href="index.html">← Retour</a>
+  <span class="brand">✨ IA Pro Tools</span>
 </div>
 
-<div class="card">
-  <h2>👤 Vos informations</h2>
-  <label>Nom complet</label>
-  <input type="text" id="nom" placeholder="Ex : Jean Dupont">
-  <label>Numéro WhatsApp</label>
-  <input type="tel" id="whatsapp" placeholder="Ex : 069XXXXXXX">
-  <label>Secteur d'activité</label>
-  <select id="secteur">
-    <option value="">-- Choisir votre secteur --</option>
-    <option>Agence immobilière</option>
-    <option>Restaurant</option>
-    <option>Boutique / E-commerce</option>
-    <option>Autre</option>
-  </select>
-  <label>Ville</label>
-  <input type="text" id="ville" placeholder="Ex : Brazzaville">
-  <p class="error" id="error">Veuillez remplir tous les champs.</p>
-  <button class="submit-btn" onclick="inscrire()" id="btn">Continuer vers le paiement →</button>
+<div class="hero-mini">
+  <div class="step-indicator">
+    <div class="step active">1</div>
+    <div class="step-line"></div>
+    <div class="step inactive">2</div>
+    <div class="step-line"></div>
+    <div class="step inactive">3</div>
+  </div>
+  <h1>Créer mon compte</h1>
+  <p>Étape 1 sur 3 — Vos informations personnelles</p>
+</div>
+
+<div class="avantages-section">
+  <div class="avantages-grid">
+    <div class="avantage-item">
+      <div class="avantage-icon">🏠</div>
+      <div class="avantage-text">Annonces immobilières</div>
+    </div>
+    <div class="avantage-item">
+      <div class="avantage-icon">🍽️</div>
+      <div class="avantage-text">Descriptions de menu</div>
+    </div>
+    <div class="avantage-item">
+      <div class="avantage-icon">🛍️</div>
+      <div class="avantage-text">Fiches produits</div>
+    </div>
+    <div class="avantage-item">
+      <div class="avantage-icon">⚡</div>
+      <div class="avantage-text">Génération instantanée</div>
+    </div>
+  </div>
+</div>
+
+<div class="form-container">
+  <div class="form-card">
+    <h2>👤 Vos informations</h2>
+    <p class="subtitle">Remplissez le formulaire pour créer votre compte gratuit</p>
+
+    <div class="form-group">
+      <label>Nom complet</label>
+      <input type="text" id="nom" placeholder="Ex : Jean Dupont">
+    </div>
+
+    <div class="form-group">
+      <label>Numéro WhatsApp</label>
+      <input type="tel" id="whatsapp" placeholder="Ex : 069XXXXXXX">
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Secteur</label>
+        <select id="secteur">
+          <option value="">-- Choisir --</option>
+          <option>Immobilier</option>
+          <option>Restaurant</option>
+          <option>E-commerce</option>
+          <option>Autre</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Ville</label>
+        <input type="text" id="ville" placeholder="Ex : Brazzaville">
+      </div>
+    </div>
+
+    <p class="error" id="error">⚠️ Veuillez remplir tous les champs.</p>
+
+    <button class="submit-btn" onclick="inscrire()" id="btn">
+      Continuer vers le paiement →
+    </button>
+
+    <div class="secure">
+      🔒 Vos données sont sécurisées et confidentielles
+    </div>
+  </div>
 </div>
 
 <script>
@@ -67,37 +148,31 @@ async function inscrire(){
   const secteur=document.getElementById('secteur').value;
   const ville=document.getElementById('ville').value.trim();
   const error=document.getElementById('error');
-
   if(!nom||!whatsapp||!secteur||!ville){
     error.style.display='block';
     return;
   }
   error.style.display='none';
-
   const btn=document.getElementById('btn');
   btn.disabled=true;
   btn.textContent='Enregistrement...';
-
   try{
     await fetch('https://hook.eu1.make.com/9ps63bbifempkoaoyy0eaurzffxeohlx',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
         type:'inscription',
-        nom,
-        whatsapp,
-        secteur,
-        ville,
+        nom,whatsapp,secteur,ville,
         date:new Date().toLocaleDateString('fr-FR'),
         heure:new Date().toLocaleTimeString('fr-FR')
       })
     });
   }catch(e){}
-
   localStorage.setItem('nom',nom);
   localStorage.setItem('whatsapp',whatsapp);
+  localStorage.setItem('secteur',secteur);
   window.location.href='abonnement.html';
 }
 </script>
 </body>
-    </html>
+</html>
