@@ -3,68 +3,94 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Outils IA - Génération de contenu</title>
+<title>IA Pro Tools - Génération de contenu</title>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:sans-serif;background:#F5F5F0;min-height:100vh}
-header{background:#1A1A2E;padding:40px 20px;text-align:center;color:white}
-header h1{font-size:28px;margin-bottom:10px}
-header p{color:#aaa;font-size:15px;margin-bottom:20px}
-.abonner-btn{display:inline-block;padding:12px 30px;background:#F5C518;color:#1A1A2E;border-radius:25px;font-weight:bold;font-size:15px;text-decoration:none}
-.cards{display:flex;flex-direction:column;gap:20px;max-width:600px;margin:40px auto;padding:0 20px}
-.card{background:white;border-radius:12px;padding:25px;text-decoration:none;color:inherit;box-shadow:0 2px 8px rgba(0,0,0,0.08);border-left:5px solid #ccc}
-.card.immo{border-left-color:#1F3D2E}
-.card.resto{border-left-color:#8B2E1F}
-.card.ecom{border-left-color:#1A3A5C}
-.card .icon{font-size:32px;margin-bottom:12px}
-.card h2{font-size:18px;margin-bottom:8px;color:#1A1A1A}
-.card p{font-size:14px;color:#666;line-height:1.5}
-.card .btn{display:inline-block;margin-top:15px;padding:8px 18px;border-radius:6px;font-size:14px;color:white;font-weight:bold}
-.card.immo .btn{background:#1F3D2E}
-.card.resto .btn{background:#8B2E1F}
-.card.ecom .btn{background:#1A3A5C}
-.tarif{background:white;border-radius:12px;padding:25px;max-width:600px;margin:0 auto 40px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.08)}
-.tarif h2{color:#1A1A2E;font-size:20px;margin-bottom:10px}
-.tarif .prix{font-size:36px;font-weight:bold;color:#1A1A2E;margin:10px 0}
-.tarif .prix span{font-size:16px;font-weight:normal;color:#666}
-.tarif p{color:#666;font-size:14px;margin-bottom:15px}
-.tarif a{display:inline-block;padding:12px 30px;background:#1A1A2E;color:white;border-radius:8px;font-weight:bold;font-size:15px;text-decoration:none}
-footer{text-align:center;padding:30px;color:#999;font-size:13px}
+body{font-family:'Inter',sans-serif;background:#0A0A0A;color:#fff;min-height:100vh}
+header{background:linear-gradient(135deg,#0A0A0A 0%,#1A1A1A 100%);padding:60px 20px 50px;text-align:center;border-bottom:1px solid #C9A84C33;position:relative;overflow:hidden}
+header::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(ellipse at center,#C9A84C0A 0%,transparent 70%);pointer-events:none}
+.logo{font-size:13px;letter-spacing:4px;color:#C9A84C;text-transform:uppercase;margin-bottom:20px;font-weight:500}
+header h1{font-family:'Playfair Display',serif;font-size:36px;margin-bottom:15px;line-height:1.2;background:linear-gradient(135deg,#fff 0%,#C9A84C 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+header p{color:#888;font-size:15px;margin-bottom:35px;font-weight:300;max-width:400px;margin-left:auto;margin-right:auto;line-height:1.6}
+.cta-btn{display:inline-block;padding:14px 35px;background:linear-gradient(135deg,#C9A84C,#F0D080);color:#0A0A0A;border-radius:3px;font-weight:600;font-size:14px;text-decoration:none;letter-spacing:1px;text-transform:uppercase}
+.section-title{text-align:center;padding:40px 20px 20px;font-family:'Playfair Display',serif;font-size:22px;color:#C9A84C;letter-spacing:2px;text-transform:uppercase}
+.divider{width:60px;height:1px;background:linear-gradient(90deg,transparent,#C9A84C,transparent);margin:0 auto 30px}
+.cards{display:flex;flex-direction:column;gap:15px;max-width:600px;margin:0 auto 20px;padding:0 20px}
+.card{background:#111;border:1px solid #222;border-radius:4px;padding:25px;text-decoration:none;color:inherit;position:relative;overflow:hidden;transition:border-color 0.3s}
+.card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%}
+.card.immo::before{background:linear-gradient(180deg,#C9A84C,#8B6914)}
+.card.resto::before{background:linear-gradient(180deg,#C9A84C,#8B6914)}
+.card.ecom::before{background:linear-gradient(180deg,#C9A84C,#8B6914)}
+.card-header{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.card-icon{width:40px;height:40px;background:#1A1A1A;border:1px solid #C9A84C33;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.card h2{font-size:16px;color:#fff;font-weight:500}
+.card p{font-size:13px;color:#666;line-height:1.6;margin-bottom:15px}
+.card .btn{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:#C9A84C;font-weight:500;letter-spacing:1px;text-transform:uppercase}
+.tarif-section{max-width:600px;margin:20px auto 40px;padding:0 20px}
+.tarif{background:#111;border:1px solid #C9A84C33;border-radius:4px;padding:35px 25px;text-align:center;position:relative;overflow:hidden}
+.tarif::before{content:'OFFRE';position:absolute;top:12px;right:15px;font-size:9px;letter-spacing:3px;color:#C9A84C;font-weight:600}
+.tarif h2{font-family:'Playfair Display',serif;font-size:20px;color:#fff;margin-bottom:5px}
+.tarif .prix{font-size:42px;font-weight:700;background:linear-gradient(135deg,#C9A84C,#F0D080);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:15px 0 5px}
+.tarif .prix span{font-size:16px;font-weight:300;color:#666;-webkit-text-fill-color:#666}
+.tarif .desc{color:#555;font-size:13px;margin-bottom:25px;line-height:1.6}
+.tarif .features{list-style:none;margin-bottom:25px;text-align:left}
+.tarif .features li{padding:8px 0;color:#888;font-size:13px;border-bottom:1px solid #1A1A1A;display:flex;align-items:center;gap:8px}
+.tarif .features li::before{content:'◆';color:#C9A84C;font-size:8px}
+.tarif a{display:inline-block;width:100%;padding:14px;background:linear-gradient(135deg,#C9A84C,#F0D080);color:#0A0A0A;border-radius:3px;font-weight:600;font-size:14px;text-decoration:none;letter-spacing:1px;text-transform:uppercase}
+footer{text-align:center;padding:30px;color:#333;font-size:12px;border-top:1px solid #1A1A1A;letter-spacing:2px;text-transform:uppercase}
 </style>
 </head>
 <body>
 <header>
-  <h1>✨ Outils IA de génération de contenu</h1>
-  <p>Des descriptions professionnelles en quelques secondes, pour chaque secteur.</p>
-  <a href="inscription.html" class="abonner-btn">🚀 Commencer maintenant</a>
+  <div class="logo">✦ IA Pro Tools ✦</div>
+  <h1>Génération de contenu<br>par Intelligence Artificielle</h1>
+  <p>Des descriptions professionnelles en quelques secondes, pour propulser votre activité.</p>
+  <a href="inscription.html" class="cta-btn">🚀 Commencer maintenant</a>
 </header>
 
-<div class="cards" style="margin-top:30px">
+<div class="section-title">Nos outils</div>
+<div class="divider"></div>
+
+<div class="cards">
   <a href="inscription.html" class="card immo">
-    <div class="icon">🏠</div>
-    <h2>Annonces immobilières</h2>
+    <div class="card-header">
+      <div class="card-icon">🏠</div>
+      <h2>Annonces immobilières</h2>
+    </div>
     <p>Générez des annonces professionnelles et attrayantes à partir des infos du bien. Idéal pour les agences immobilières.</p>
-    <span class="btn">Utiliser l'outil →</span>
+    <span class="btn">Accéder à l'outil →</span>
   </a>
   <a href="inscription.html" class="card resto">
-    <div class="icon">🍽️</div>
-    <h2>Descriptions de menu</h2>
+    <div class="card-header">
+      <div class="card-icon">🍽️</div>
+      <h2>Descriptions de menu</h2>
+    </div>
     <p>Rédigez des descriptions de plats appétissantes pour votre carte, site web ou plateformes de livraison.</p>
-    <span class="btn">Utiliser l'outil →</span>
+    <span class="btn">Accéder à l'outil →</span>
   </a>
   <a href="inscription.html" class="card ecom">
-    <div class="icon">🛍️</div>
-    <h2>Fiches produits e-commerce</h2>
+    <div class="card-header">
+      <div class="card-icon">🛍️</div>
+      <h2>Fiches produits e-commerce</h2>
+    </div>
     <p>Créez des descriptions produits optimisées et convaincantes pour votre boutique en ligne.</p>
-    <span class="btn">Utiliser l'outil →</span>
+    <span class="btn">Accéder à l'outil →</span>
   </a>
 </div>
 
-<div class="tarif" style="padding:0 20px">
-  <div style="background:white;border-radius:12px;padding:25px;text-align:center">
-    <h2>💳 Abonnement mensuel</h2>
+<div class="tarif-section">
+  <div class="tarif">
+    <h2>Abonnement Mensuel</h2>
     <div class="prix">15 000 <span>FCFA/mois</span></div>
-    <p>Accès illimité aux 3 outils IA + support WhatsApp inclus</p>
+    <p class="desc">Accès illimité à tous les outils + support WhatsApp</p>
+    <ul class="features">
+      <li>Annonces immobilières illimitées</li>
+      <li>Descriptions de menu illimitées</li>
+      <li>Fiches produits illimitées</li>
+      <li>Support WhatsApp inclus</li>
+      <li>Mises à jour gratuites</li>
+    </ul>
     <a href="inscription.html">S'abonner maintenant →</a>
   </div>
 </div>
