@@ -20,10 +20,7 @@ body{font-family:'Poppins',sans-serif;background:#f8f9ff;min-height:100vh}
 .step-line{width:30px;height:2px;background:rgba(255,255,255,0.3)}
 .hero-mini h1{font-size:22px;font-weight:800;color:white;margin-bottom:5px}
 .hero-mini p{color:rgba(255,255,255,0.85);font-size:13px}
-
 .container{max-width:500px;margin:0 auto;padding:20px}
-
-/* OUTILS SELECTION */
 .section-title{font-size:14px;font-weight:700;color:#1a1a2e;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px}
 .outils-grid{display:flex;flex-direction:column;gap:12px;margin-bottom:20px}
 .outil-card{background:white;border-radius:16px;padding:16px;display:flex;align-items:center;gap:12px;box-shadow:0 2px 10px rgba(0,0,0,0.06);border:2px solid transparent;cursor:pointer;transition:all 0.2s}
@@ -37,23 +34,19 @@ body{font-family:'Poppins',sans-serif;background:#f8f9ff;min-height:100vh}
 .outil-info{flex:1}
 .outil-info h3{font-size:14px;font-weight:700;color:#1a1a2e;margin-bottom:2px}
 .outil-info p{font-size:11px;color:#888}
-.outil-prix{font-size:15px;font-weight:800;color:#667eea;margin-right:8px}
+.outil-prix{font-size:13px;font-weight:800;color:#667eea;white-space:nowrap}
 .outil-check{width:24px;height:24px;border-radius:50%;border:2px solid #ddd;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;transition:all 0.2s}
 .outil-card.selected .outil-check{background:#667eea;border-color:#667eea;color:white}
-.outil-card.selected.resto .outil-check{background:#f5576c;border-color:#f5576c}
-.outil-card.selected.ecom .outil-check{background:#4facfe;border-color:#4facfe}
-
-/* TOTAL */
+.outil-card.selected.resto .outil-check{background:#f5576c;border-color:#f5576c;color:white}
+.outil-card.selected.ecom .outil-check{background:#4facfe;border-color:#4facfe;color:white}
 .total-card{background:linear-gradient(135deg,#667eea,#764ba2);border-radius:16px;padding:20px;margin-bottom:20px;text-align:center}
 .total-label{color:rgba(255,255,255,0.8);font-size:12px;text-transform:uppercase;letter-spacing:1px;margin-bottom:5px}
 .total-prix{font-size:42px;font-weight:800;color:white;line-height:1}
 .total-prix span{font-size:16px;font-weight:400;opacity:0.8}
 .total-desc{color:rgba(255,255,255,0.7);font-size:12px;margin-top:5px}
 .economie{background:rgba(255,255,255,0.2);border-radius:50px;padding:4px 12px;font-size:11px;color:white;font-weight:600;display:inline-block;margin-top:8px}
-
-/* PAIEMENT */
 .payment-card{background:white;border-radius:16px;padding:20px;margin-bottom:15px;box-shadow:0 2px 10px rgba(0,0,0,0.06)}
-.payment-card h2{font-size:16px;font-weight:700;color:#1a1a2e;margin-bottom:15px;display:flex;align-items:center;gap:8px}
+.payment-card h2{font-size:16px;font-weight:700;color:#1a1a2e;margin-bottom:15px}
 .mtn-box{background:linear-gradient(135deg,#FFD700,#FFA500);border-radius:12px;padding:18px;text-align:center;margin-bottom:15px}
 .mtn-box .mtn-label{font-size:11px;font-weight:700;letter-spacing:2px;color:#7A4F00;text-transform:uppercase;margin-bottom:5px}
 .mtn-box .mtn-num{font-size:32px;font-weight:800;color:#1a1a1a;letter-spacing:3px}
@@ -62,24 +55,20 @@ body{font-family:'Poppins',sans-serif;background:#f8f9ff;min-height:100vh}
 .steps-list li{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid #f5f5f5;font-size:13px;color:#555;align-items:flex-start}
 .steps-list li:last-child{border-bottom:none}
 .step-num{width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#667eea,#764ba2);color:white;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
-
-/* FORMULAIRE */
 .form-card{background:white;border-radius:16px;padding:20px;margin-bottom:20px;box-shadow:0 2px 10px rgba(0,0,0,0.06)}
-.form-card h2{font-size:16px;font-weight:700;color:#1a1a2e;margin-bottom:15px;display:flex;align-items:center;gap:8px}
+.form-card h2{font-size:16px;font-weight:700;color:#1a1a2e;margin-bottom:15px}
 .form-group{margin-bottom:14px}
 .form-group label{display:block;font-size:11px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px}
-.phone-row{display:flex;gap:8px}
-.country-select{width:140px;flex-shrink:0}
-.form-group input,.form-group select,.country-select{padding:12px;border:2px solid #f0f0f0;border-radius:10px;font-size:14px;font-family:'Poppins',sans-serif;color:#1a1a2e;width:100%}
+.form-group input,.form-group select{width:100%;padding:12px;border:2px solid #f0f0f0;border-radius:10px;font-size:14px;font-family:'Poppins',sans-serif;color:#1a1a2e;background:white}
 .form-group input:focus,.form-group select:focus{outline:none;border-color:#667eea;box-shadow:0 0 0 3px #667eea15}
 .submit-btn{width:100%;padding:16px;background:linear-gradient(135deg,#667eea,#764ba2);color:white;border:none;border-radius:50px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Poppins',sans-serif;box-shadow:0 8px 20px rgba(102,126,234,0.3)}
 .submit-btn:disabled{background:#ccc;box-shadow:none}
 .secure{display:flex;align-items:center;justify-content:center;gap:6px;color:#aaa;font-size:12px;margin-top:12px}
-.success-box{display:none;background:#d4edda;border:1px solid #28a745;border-radius:12px;padding:20px;text-align:center;margin-top:15px}
-.success-box .success-icon{font-size:40px;margin-bottom:10px}
-.success-box h3{color:#155724;font-size:16px;font-weight:700;margin-bottom:5px}
-.success-box p{color:#155724;font-size:13px;line-height:1.6}
-.error{color:#f5576c;font-size:12px;margin-top:8px;display:none}
+.success-box{display:none;background:linear-gradient(135deg,#d4edda,#c3e6cb);border-radius:16px;padding:30px 20px;text-align:center;margin-top:15px}
+.success-box .success-icon{font-size:50px;margin-bottom:10px}
+.success-box h3{color:#155724;font-size:20px;font-weight:800;margin-bottom:8px}
+.success-box p{color:#155724;font-size:13px;line-height:1.8}
+.error{color:#f5576c;font-size:12px;margin-top:8px;display:none;font-weight:500}
 </style>
 </head>
 <body>
@@ -102,7 +91,7 @@ body{font-family:'Poppins',sans-serif;background:#f8f9ff;min-height:100vh}
 </div>
 
 <div class="container">
-  <!-- SÉLECTION OUTILS -->
+
   <div class="section-title">🎯 Sélectionnez vos outils</div>
   <div class="outils-grid">
     <div class="outil-card immo" id="card-immo" onclick="toggleOutil('immo')">
@@ -134,15 +123,13 @@ body{font-family:'Poppins',sans-serif;background:#f8f9ff;min-height:100vh}
     </div>
   </div>
 
-  <!-- TOTAL -->
-  <div class="total-card" id="total-card">
+  <div class="total-card">
     <div class="total-label">Total à payer</div>
     <div class="total-prix" id="total-prix">0 <span>FCFA/mois</span></div>
     <div class="total-desc" id="total-desc">Sélectionnez au moins un outil</div>
     <div class="economie" id="economie" style="display:none"></div>
   </div>
 
-  <!-- PAIEMENT MTN -->
   <div class="payment-card">
     <h2>📱 Paiement MTN Mobile Money</h2>
     <div class="mtn-box">
@@ -151,15 +138,14 @@ body{font-family:'Poppins',sans-serif;background:#f8f9ff;min-height:100vh}
       <div class="mtn-name">Joseph Steave</div>
     </div>
     <ul class="steps-list">
-      <li><div class="step-num">1</div> Sélectionnez vos outils ci-dessus et notez le montant total</li>
-      <li><div class="step-num">2</div> Envoyez le montant exact via MTN Mobile Money au <strong>069 475 693</strong></li>
-      <li><div class="step-num">3</div> Notez le <strong>code de transaction</strong> reçu par SMS</li>
-      <li><div class="step-num">4</div> Remplissez le formulaire ci-dessous et soumettez</li>
-      <li><div class="step-num">5</div> Vous recevrez votre accès sur <strong>WhatsApp</strong> rapidement</li>
+      <li><div class="step-num">1</div>Sélectionnez vos outils et notez le montant total</li>
+      <li><div class="step-num">2</div>Envoyez le montant exact via MTN Money au <strong>069 475 693</strong></li>
+      <li><div class="step-num">3</div>Notez le <strong>code de transaction</strong> reçu par SMS</li>
+      <li><div class="step-num">4</div>Remplissez le formulaire ci-dessous et soumettez</li>
+      <li><div class="step-num">5</div>Vous recevrez votre accès sur <strong>WhatsApp</strong> rapidement</li>
     </ul>
   </div>
 
-  <!-- FORMULAIRE CONFIRMATION -->
   <div class="form-card">
     <h2>✅ Confirmer mon paiement</h2>
 
@@ -169,111 +155,81 @@ body{font-family:'Poppins',sans-serif;background:#f8f9ff;min-height:100vh}
     </div>
 
     <div class="form-group">
+      <label>Code pays</label>
+      <select id="country-code">
+        <option value="+242" selected>🇨🇬 +242 — Congo</option>
+        <option value="+243">🇨🇩 +243 — Congo RDC</option>
+        <option value="+237">🇨🇲 +237 — Cameroun</option>
+        <option value="+225">🇨🇮 +225 — Côte d'Ivoire</option>
+        <option value="+221">🇸🇳 +221 — Sénégal</option>
+        <option value="+241">🇬🇦 +241 — Gabon</option>
+        <option value="+236">🇨🇫 +236 — Centrafrique</option>
+        <option value="+235">🇹🇩 +235 — Tchad</option>
+        <option value="+240">🇬🇶 +240 — Guinée Équatoriale</option>
+        <option value="+257">🇧🇮 +257 — Burundi</option>
+        <option value="+250">🇷🇼 +250 — Rwanda</option>
+        <option value="+256">🇺🇬 +256 — Ouganda</option>
+        <option value="+254">🇰🇪 +254 — Kenya</option>
+        <option value="+255">🇹🇿 +255 — Tanzanie</option>
+        <option value="+234">🇳🇬 +234 — Nigeria</option>
+        <option value="+233">🇬🇭 +233 — Ghana</option>
+        <option value="+223">🇲🇱 +223 — Mali</option>
+        <option value="+226">🇧🇫 +226 — Burkina Faso</option>
+        <option value="+227">🇳🇪 +227 — Niger</option>
+        <option value="+228">🇹🇬 +228 — Togo</option>
+        <option value="+229">🇧🇯 +229 — Bénin</option>
+        <option value="+224">🇬🇳 +224 — Guinée</option>
+        <option value="+245">🇬🇼 +245 — Guinée-Bissau</option>
+        <option value="+232">🇸🇱 +232 — Sierra Leone</option>
+        <option value="+231">🇱🇷 +231 — Libéria</option>
+        <option value="+220">🇬🇲 +220 — Gambie</option>
+        <option value="+238">🇨🇻 +238 — Cap-Vert</option>
+        <option value="+269">🇰🇲 +269 — Comores</option>
+        <option value="+261">🇲🇬 +261 — Madagascar</option>
+        <option value="+230">🇲🇺 +230 — Maurice</option>
+        <option value="+266">🇱🇸 +266 — Lesotho</option>
+        <option value="+268">🇸🇿 +268 — Eswatini</option>
+        <option value="+264">🇳🇦 +264 — Namibie</option>
+        <option value="+267">🇧🇼 +267 — Botswana</option>
+        <option value="+260">🇿🇲 +260 — Zambie</option>
+        <option value="+263">🇿🇼 +263 — Zimbabwe</option>
+        <option value="+258">🇲🇿 +258 — Mozambique</option>
+        <option value="+265">🇲🇼 +265 — Malawi</option>
+        <option value="+251">🇪🇹 +251 — Éthiopie</option>
+        <option value="+253">🇩🇯 +253 — Djibouti</option>
+        <option value="+252">🇸🇴 +252 — Somalie</option>
+        <option value="+249">🇸🇩 +249 — Soudan</option>
+        <option value="+211">🇸🇸 +211 — Soudan du Sud</option>
+        <option value="+20">🇪🇬 +20 — Égypte</option>
+        <option value="+216">🇹🇳 +216 — Tunisie</option>
+        <option value="+212">🇲🇦 +212 — Maroc</option>
+        <option value="+213">🇩🇿 +213 — Algérie</option>
+        <option value="+218">🇱🇾 +218 — Libye</option>
+        <option value="+222">🇲🇷 +222 — Mauritanie</option>
+        <option value="+244">🇦🇴 +244 — Angola</option>
+        <option value="+239">🇸🇹 +239 — São Tomé</option>
+        <option value="+33">🇫🇷 +33 — France</option>
+        <option value="+32">🇧🇪 +32 — Belgique</option>
+        <option value="+41">🇨🇭 +41 — Suisse</option>
+        <option value="+1">🇺🇸 +1 — États-Unis / Canada</option>
+        <option value="+44">🇬🇧 +44 — Royaume-Uni</option>
+        <option value="+34">🇪🇸 +34 — Espagne</option>
+        <option value="+39">🇮🇹 +39 — Italie</option>
+        <option value="+49">🇩🇪 +49 — Allemagne</option>
+        <option value="+351">🇵🇹 +351 — Portugal</option>
+        <option value="+55">🇧🇷 +55 — Brésil</option>
+        <option value="+86">🇨🇳 +86 — Chine</option>
+        <option value="+91">🇮🇳 +91 — Inde</option>
+        <option value="+81">🇯🇵 +81 — Japon</option>
+        <option value="+971">🇦🇪 +971 — Émirats Arabes Unis</option>
+        <option value="+966">🇸🇦 +966 — Arabie Saoudite</option>
+        <option value="+7">🇷🇺 +7 — Russie</option>
+      </select>
+    </div>
+
+    <div class="form-group">
       <label>Numéro WhatsApp</label>
-      <div class="phone-row">
-        <select class="country-select" id="country-code">
-          <option value="+93">🇦🇫 +93 Afghanistan</option>
-          <option value="+355">🇦🇱 +355 Albanie</option>
-          <option value="+213">🇩🇿 +213 Algérie</option>
-          <option value="+244">🇦🇴 +244 Angola</option>
-          <option value="+54">🇦🇷 +54 Argentine</option>
-          <option value="+61">🇦🇺 +61 Australie</option>
-          <option value="+43">🇦🇹 +43 Autriche</option>
-          <option value="+32">🇧🇪 +32 Belgique</option>
-          <option value="+229">🇧🇯 +229 Bénin</option>
-          <option value="+55">🇧🇷 +55 Brésil</option>
-          <option value="+226">🇧🇫 +226 Burkina Faso</option>
-          <option value="+257">🇧🇮 +257 Burundi</option>
-          <option value="+237">🇨🇲 +237 Cameroun</option>
-          <option value="+238">🇨🇻 +238 Cap-Vert</option>
-          <option value="+236">🇨🇫 +236 Centrafrique</option>
-          <option value="+56">🇨🇱 +56 Chili</option>
-          <option value="+86">🇨🇳 +86 Chine</option>
-          <option value="+57">🇨🇴 +57 Colombie</option>
-          <option value="+269">🇰🇲 +269 Comores</option>
-          <option value="+242" selected>🇨🇬 +242 Congo</option>
-          <option value="+243">🇨🇩 +243 Congo RDC</option>
-          <option value="+225">🇨🇮 +225 Côte d'Ivoire</option>
-          <option value="+45">🇩🇰 +45 Danemark</option>
-          <option value="+253">🇩🇯 +253 Djibouti</option>
-          <option value="+20">🇪🇬 +20 Égypte</option>
-          <option value="+971">🇦🇪 +971 Émirats Arabes Unis</option>
-          <option value="+34">🇪🇸 +34 Espagne</option>
-          <option value="+1">🇺🇸 +1 États-Unis</option>
-          <option value="+251">🇪🇹 +251 Éthiopie</option>
-          <option value="+358">🇫🇮 +358 Finlande</option>
-          <option value="+33">🇫🇷 +33 France</option>
-          <option value="+241">🇬🇦 +241 Gabon</option>
-          <option value="+220">🇬🇲 +220 Gambie</option>
-          <option value="+233">🇬🇭 +233 Ghana</option>
-          <option value="+224">🇬🇳 +224 Guinée</option>
-          <option value="+245">🇬🇼 +245 Guinée-Bissau</option>
-          <option value="+240">🇬🇶 +240 Guinée Équatoriale</option>
-          <option value="+30">🇬🇷 +30 Grèce</option>
-          <option value="+91">🇮🇳 +91 Inde</option>
-          <option value="+62">🇮🇩 +62 Indonésie</option>
-          <option value="+98">🇮🇷 +98 Iran</option>
-          <option value="+964">🇮🇶 +964 Irak</option>
-          <option value="+353">🇮🇪 +353 Irlande</option>
-          <option value="+972">🇮🇱 +972 Israël</option>
-          <option value="+39">🇮🇹 +39 Italie</option>
-          <option value="+81">🇯🇵 +81 Japon</option>
-          <option value="+962">🇯🇴 +962 Jordanie</option>
-          <option value="+254">🇰🇪 +254 Kenya</option>
-          <option value="+965">🇰🇼 +965 Koweït</option>
-          <option value="+266">🇱🇸 +266 Lesotho</option>
-          <option value="+231">🇱🇷 +231 Libéria</option>
-          <option value="+218">🇱🇾 +218 Libye</option>
-          <option value="+261">🇲🇬 +261 Madagascar</option>
-          <option value="+265">🇲🇼 +265 Malawi</option>
-          <option value="+60">🇲🇾 +60 Malaisie</option>
-          <option value="+223">🇲🇱 +223 Mali</option>
-          <option value="+212">🇲🇦 +212 Maroc</option>
-          <option value="+230">🇲🇺 +230 Maurice</option>
-          <option value="+222">🇲🇷 +222 Mauritanie</option>
-          <option value="+52">🇲🇽 +52 Mexique</option>
-          <option value="+258">🇲🇿 +258 Mozambique</option>
-          <option value="+264">🇳🇦 +264 Namibie</option>
-          <option value="+227">🇳🇪 +227 Niger</option>
-          <option value="+234">🇳🇬 +234 Nigeria</option>
-          <option value="+47">🇳🇴 +47 Norvège</option>
-          <option value="+64">🇳🇿 +64 Nouvelle-Zélande</option>
-          <option value="+256">🇺🇬 +256 Ouganda</option>
-          <option value="+92">🇵🇰 +92 Pakistan</option>
-          <option value="+507">🇵🇦 +507 Panama</option>
-          <option value="+595">🇵🇾 +595 Paraguay</option>
-          <option value="+31">🇳🇱 +31 Pays-Bas</option>
-          <option value="+51">🇵🇪 +51 Pérou</option>
-          <option value="+63">🇵🇭 +63 Philippines</option>
-          <option value="+48">🇵🇱 +48 Pologne</option>
-          <option value="+351">🇵🇹 +351 Portugal</option>
-          <option value="+974">🇶🇦 +974 Qatar</option>
-          <option value="+40">🇷🇴 +40 Roumanie</option>
-          <option value="+44">🇬🇧 +44 Royaume-Uni</option>
-          <option value="+7">🇷🇺 +7 Russie</option>
-          <option value="+250">🇷🇼 +250 Rwanda</option>
-          <option value="+966">🇸🇦 +966 Arabie Saoudite</option>
-          <option value="+221">🇸🇳 +221 Sénégal</option>
-          <option value="+232">🇸🇱 +232 Sierra Leone</option>
-          <option value="+252">🇸🇴 +252 Somalie</option>
-          <option value="+249">🇸🇩 +249 Soudan</option>
-          <option value="+211">🇸🇸 +211 Soudan du Sud</option>
-          <option value="+46">🇸🇪 +46 Suède</option>
-          <option value="+41">🇨🇭 +41 Suisse</option>
-          <option value="+255">🇹🇿 +255 Tanzanie</option>
-          <option value="+235">🇹🇩 +235 Tchad</option>
-          <option value="+228">🇹🇬 +228 Togo</option>
-          <option value="+216">🇹🇳 +216 Tunisie</option>
-          <option value="+90">🇹🇷 +90 Turquie</option>
-          <option value="+380">🇺🇦 +380 Ukraine</option>
-          <option value="+598">🇺🇾 +598 Uruguay</option>
-          <option value="+58">🇻🇪 +58 Venezuela</option>
-          <option value="+84">🇻🇳 +84 Vietnam</option>
-          <option value="+260">🇿🇲 +260 Zambie</option>
-          <option value="+263">🇿🇼 +263 Zimbabwe</option>
-        </select>
-        <input type="tel" id="whatsapp" placeholder="069XXXXXXX" style="flex:1;min-width:0;padding:12px;border:2px solid #f0f0f0;border-radius:10px;font-size:14px;font-family:'Poppins',sans-serif;color:#1a1a2e">
-     
+      <input type="tel" id="whatsapp" placeholder="Ex : 069475693">
     </div>
 
     <div class="form-group">
@@ -290,43 +246,39 @@ body{font-family:'Poppins',sans-serif;background:#f8f9ff;min-height:100vh}
     <div class="success-box" id="success">
       <div class="success-icon">🎉</div>
       <h3>Abonnement confirmé !</h3>
-      <p>Votre paiement a bien été enregistré. Vous recevrez votre accès sur <strong>WhatsApp</strong> très rapidement.<br><br>Pour toute question : <strong>069 475 693</strong></p>
+      <p>Votre paiement a bien été enregistré.<br>Vous recevrez votre accès sur <strong>WhatsApp</strong> très rapidement.<br><br>Pour toute question contactez-nous :<br><strong>069 475 693</strong></p>
     </div>
   </div>
 </div>
 
 <script>
-const prix={immo:false,resto:false,ecom:false};
-const nom=localStorage.getItem('nom')||'';
-const secteur=localStorage.getItem('secteur')||'';
-if(nom)document.getElementById('nom').value=nom;
-
-// Présélectionner selon le secteur choisi
-if(secteur==='Immobilier')toggleOutil('immo');
-else if(secteur==='Restaurant')toggleOutil('resto');
-else if(secteur==='E-commerce')toggleOutil('ecom');
+const choix={immo:false,resto:false,ecom:false};
+const nomSaved=localStorage.getItem('nom')||'';
+const secteurSaved=localStorage.getItem('secteur')||'';
+if(nomSaved)document.getElementById('nom').value=nomSaved;
+if(secteurSaved==='Immobilier')toggleOutil('immo');
+else if(secteurSaved==='Restaurant')toggleOutil('resto');
+else if(secteurSaved==='E-commerce')toggleOutil('ecom');
 
 function toggleOutil(id){
-  prix[id]=!prix[id];
-  document.getElementById('card-'+id).classList.toggle('selected',prix[id]);
-  document.getElementById('check-'+id).textContent=prix[id]?'✓':'';
+  choix[id]=!choix[id];
+  document.getElementById('card-'+id).classList.toggle('selected',choix[id]);
+  document.getElementById('check-'+id).textContent=choix[id]?'✓':'';
   updateTotal();
 }
 
 function updateTotal(){
-  const nb=Object.values(prix).filter(Boolean).length;
-  let total=0;
-  let desc='';
-  let eco='';
+  const nb=Object.values(choix).filter(Boolean).length;
+  let total=0,desc='',eco='';
   if(nb===0){total=0;desc='Sélectionnez au moins un outil';}
   else if(nb===1){total=15000;desc='1 outil sélectionné';}
   else if(nb===2){total=30000;desc='2 outils sélectionnés';eco='Économisez 15 000 FCFA !';}
-  else if(nb===3){total=45000;desc='Pack complet — 3 outils';eco='Économisez 45 000 FCFA !';}
+  else{total=45000;desc='Pack complet — 3 outils';eco='Meilleure offre !';}
   document.getElementById('total-prix').innerHTML=total.toLocaleString('fr-FR')+' <span>FCFA/mois</span>';
   document.getElementById('total-desc').textContent=desc;
   const ecoEl=document.getElementById('economie');
   if(eco){ecoEl.textContent=eco;ecoEl.style.display='inline-block';}
-  else{ecoEl.style.display='none';}
+  else ecoEl.style.display='none';
 }
 
 async function confirmer(){
@@ -334,16 +286,18 @@ async function confirmer(){
   const code=document.getElementById('country-code').value;
   const tel=document.getElementById('whatsapp').value.trim();
   const transaction=document.getElementById('transaction').value.trim();
-  const nb=Object.values(prix).filter(Boolean).length;
-  const error=document.getElementById('error');
-  if(!nom||!tel||!transaction||nb===0){error.style.display='block';return;}
-  error.style.display='none';
+  const nb=Object.values(choix).filter(Boolean).length;
+  if(!nom||!tel||!transaction||nb===0){
+    document.getElementById('error').style.display='block';
+    return;
+  }
+  document.getElementById('error').style.display='none';
   const btn=document.getElementById('btn');
   btn.disabled=true;btn.textContent='Envoi en cours...';
   const outils=[];
-  if(prix.immo)outils.push('Immobilier');
-  if(prix.resto)outils.push('Restaurant');
-  if(prix.ecom)outils.push('E-commerce');
+  if(choix.immo)outils.push('Immobilier');
+  if(choix.resto)outils.push('Restaurant');
+  if(choix.ecom)outils.push('E-commerce');
   const total=nb===1?15000:nb===2?30000:45000;
   try{
     await fetch('https://hook.eu1.make.com/9ps63bbifempkoaoyy0eaurzffxeohlx',{
@@ -354,7 +308,7 @@ async function confirmer(){
         nom,
         whatsapp:code+tel,
         outils:outils.join(', '),
-        total:total+' FCFA',
+        total:total.toLocaleString('fr-FR')+' FCFA',
         transaction,
         date:new Date().toLocaleDateString('fr-FR'),
         heure:new Date().toLocaleTimeString('fr-FR')
