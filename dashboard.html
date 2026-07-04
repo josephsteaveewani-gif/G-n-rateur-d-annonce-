@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mon espace - IA Pro Tools</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Poppins',sans-serif;background:#f8f9ff;min-height:100vh}
+.top-bar{background:linear-gradient(135deg,#667eea,#764ba2);padding:15px 20px;display:flex;align-items:center;justify-content:space-between}
+.top-bar .brand{color:white;font-weight:800;font-size:16px}
+.top-bar .logout{color:rgba(255,255,255,0.8);font-size:13px;cursor:pointer;background:rgba(255,255,255,0.2);padding:6px 14px;border-radius:50px;border:none;font-family:'Poppins',sans-serif}
+.hero-dash{background:linear-gradient(135deg,#667eea,#764ba2,#f093fb);padding:30px 20px;text-align:center}
+.hero-dash .avatar{width:60px;height:60px;background:rgba(255,255,255,0.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 12px}
+.hero-dash h1{color:white;font-size:20px;font-weight:800;margin-bottom:4px}
+.hero-dash p{color:rgba(255,255,255,0.8);font-size:13px}
+.expiration-bar{background:white;margin:15px;border-radius:16px;padding:15px;box-shadow:0 2px 10px rgba(0,0,0,0.06);display:flex;align-items:center;gap:12px}
+.exp-icon{width:40px;height:40px;border-radius:10px;background:#43e97b20;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.exp-info .exp-label{font-size:11px;color:#888;font-weight:600;text-transform:uppercase;letter-spacing:0.5px}
+.exp-info .exp-date{font-size:15px;font-weight:700;color:#1a1a2e}
+.exp-info .exp-days{font-size:12px;margin-top:2px}
+.exp-info .exp-days.ok{color:#43e97b}
+.exp-info .exp-days.warning{color:#FFD700}
+.exp-info .exp-days.danger{color:#f5576c}
+.progress-bar{background:#f0f0f0;border-radius:50px;height:6px;margin-top:8px;overflow:hidden}
+.progress-fill{height:100%;border-radius:50px;background:linear-gradient(90deg,#43e97b,#38f9d7);transition:width 0.5s}
+.container{padding:0 15px 30px}
+.section-title{font-size:14px;font-weight:700;color:#1a1a2e;text-transform:uppercase;letter-spacing:1px;margin:20px 0 12px}
+.outils-grid{display:flex;flex-direction:column;gap:12px}
+.outil-card{background:white;border-radius:16px;padding:18px;display:flex;align-items:center;gap:14px;box-shadow:0 2px 10px rgba(0,0,0,0.06);text-decoration:none;color:inherit;border-left:4px solid #ccc;transition:transform 0.2s}
+.outil-card:active{transform:scale(0.98)}
+.outil-card.actif.immo{border-left-color:#667eea}
+.outil-card.actif.resto{border-left-color:#f5576c}
+.outil-card.actif.ecom{border-left-color:#4facfe}
+.outil-card.inactif{opacity:0.5}
+.outil-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.outil-card.actif.immo .outil-icon{background:#667eea15}
+.outil-card.actif.resto .outil-icon{background:#f5576c15}
+.outil-card.actif.ecom .outil-icon{background:#4facfe15}
+.outil-card.inactif .outil-icon{background:#f0f0f0}
+.outil-info{flex:1}
+.outil-info h3{font-size:15px;font-weight:700;color:#1a1a2e;margin-bottom:3px}
+.outil-info p{font-size:12px;color:#888}
+.outil-status{font-size:11px;font-weight:700;padding:4px 10px;border-radius:50px}
+.outil-status.ok{background:#43e97b20;color:#2d8a50}
+.outil-status.lock{background:#f0f0f0;color:#aaa}
+.info-card{background:white;border-radius:16px;padding:18px;box-shadow:0 2px 10px rgba(0,0,0,0.06);margin-bottom:12px}
+.info-card h3{font-size:14px;font-weight:700;color:#1a1a2e;margin-bottom:12px}
+.info-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f5f5f5;font-size:13px}
+.info-row:last-child{border-bottom:none}
+.info-row .label{color:#888}
+.info-row .value{font-weight:600;color:#1a1a2e}
+.renouveler-btn{width:100%;padding:15px;background:linear-gradient(135deg,#667eea,#764ba2);color:white;border:none;border-radius:50px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Poppins',sans-serif;box-shadow:0 8px 20px rgba(102,126,234,0.3);margin-bottom:12px}
+.whatsapp-btn{width:100%;padding:14px;background:#25D366;color:white;border:none;border-radius:50px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Poppins',sans-serif;display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <span class="brand">✨ IA Pro Tools</span>
+  <button class="logout" onclick="seDeconnecter()">Déconnexion</button>
+</div>
+
+<div class="hero-dash">
+  <div class="avatar">👤</div>
+  <h1 id="nomClient">Bonjour !</h1>
+  <p id="soustitre">Bienvenue dans votre espace personnel</p>
+</div>
+
+<div class="expiration-bar" id="expirationBar">
+  <div class="exp-icon">📅</div>
+  <div class="exp-info" style="flex:1">
+    <div class="exp-label">Abonnement actif jusqu'au</div>
+    <div class="exp-date" id="expDate">—</div>
+    <div class="exp-days" id="expDays">—</div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:100%"></div></div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="section-title">🛠️ Mes outils</div>
+  <div class="outils-grid" id="outilsGrid"></div>
+
+  <div class="section-title">📋 Mon abonnement</div>
+  <div class="info-card">
+    <h3>Informations</h3>
+    <div class="info-row"><span class="label">Nom</span><span class="value" id="infoNom">—</span></div>
+    <div class="info-row"><span class="label">WhatsApp</span><span class="value" id="infoWhatsapp">—</span></div>
+    <div class="info-row"><span class="label">Outils actifs</span><span class="value" id="infoOutils">—</span></div>
+    <div class="info-row"><span class="label">Expiration</span><span class="value" id="infoExp">—</span></div>
+  </div>
+
+  <button class="renouveler-btn" onclick="renouveler()">🔄 Renouveler mon abonnement</button>
+  <a href="https://wa.me/242069475693" class="whatsapp-btn">💬 Contacter le support</a>
+</div>
+
+<script>
+// Vérifier la session
+const session=JSON.parse(sessionStorage.getItem('session')||'null');
+if(!session){window.location.href='connexion.html';}
+
+function seDeconnecter(){
+  sessionStorage.removeItem('session');
+  window.location.href='connexion.html';
+}
+
+// Afficher les infos
+document.getElementById('nomClient').textContent='Bonjour, '+session.nom+' 👋';
+document.getElementById('infoNom').textContent=session.nom;
+document.getElementById('infoWhatsapp').textContent=session.whatsapp;
+document.getElementById('infoOutils').textContent=session.outils;
+document.getElementById('infoExp').textContent=new Date(session.expiration).toLocaleDateString('fr-FR');
+
+// Expiration
+const today=new Date();
+const expiration=new Date(session.expiration);
+const joursRestants=Math.ceil((expiration-today)/(1000*60*60*24));
+const expDate=document.getElementById('expDate');
+const expDays=document.getElementById('expDays');
+const progress=document.getElementById('progressFill');
+
+expDate.textContent=expiration.toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+
+if(joursRestants>7){
+  expDays.textContent='✅ '+joursRestants+' jours restants';
+  expDays.className='exp-days ok';
+  progress.style.background='linear-gradient(90deg,#43e97b,#38f9d7)';
+  progress.style.width=Math.min(100,joursRestants/30*100)+'%';
+}else if(joursRestants>0){
+  expDays.textContent='⚠️ Plus que '+joursRestants+' jours — Renouvelez vite !';
+  expDays.className='exp-days warning';
+  progress.style.background='linear-gradient(90deg,#FFD700,#FFA500)';
+  progress.style.width=joursRestants/30*100+'%';
+}else{
+  expDays.textContent='❌ Abonnement expiré — Renouvelez maintenant';
+  expDays.className='exp-days danger';
+  progress.style.background='#f5576c';
+  progress.style.width='100%';
+}
+
+// Afficher les outils
+const outils=[
+  {id:'immo',nom:'Annonces immobilières',desc:'Générez des annonces professionnelles',icon:'🏠',classe:'immo',lien:'immobilier.html',cle:'Immobilier'},
+  {id:'resto',nom:'Descriptions de menu',desc:'Rédigez des descriptions appétissantes',icon:'🍽️',classe:'resto',lien:'restaurant.html',cle:'Restaurant'},
+  {id:'ecom',nom:'Fiches produits e-commerce',desc:'Créez des descriptions convaincantes',icon:'🛍️',classe:'ecom',lien:'ecommerce.html',cle:'E-commerce'}
+];
+
+const outilsActifs=session.outils||'';
+const grid=document.getElementById('outilsGrid');
+
+outils.forEach(o=>{
+  const actif=outilsActifs.includes(o.cle);
+  const div=document.createElement('div');
+  if(actif){
+    div.innerHTML=`
+      <div class="outil-card actif ${o.classe}" onclick="accederOutil('${o.lien}','${o.cle}')">
+        <div class="outil-icon">${o.icon}</div>
+        <div class="outil-info"><h3>${o.nom}</h3><p>${o.desc}</p></div>
+        <span class="outil-status ok">✓ Actif</span>
+      </div>`;
+  }else{
+    div.innerHTML=`
+      <div class="outil-card inactif">
+        <div class="outil-icon">🔒</div>
+        <div class="outil-info"><h3>${o.nom}</h3><p>Non inclus dans votre formule</p></div>
+        <span class="outil-status lock">🔒 Verrouillé</span>
+      </div>`;
+  }
+  grid.appendChild(div);
+});
+
+function accederOutil(lien,cle){
+  const outilsActifs=session.outils||'';
+  if(!outilsActifs.includes(cle)){
+    alert('Cet outil n\'est pas inclus dans votre abonnement. Contactez-nous sur WhatsApp au 069 475 693 pour l\'ajouter.');
+    return;
+  }
+  sessionStorage.setItem('outilActif',cle);
+  window.location.href=lien;
+}
+
+function renouveler(){
+  window.location.href='https://wa.me/242069475693?text=Bonjour, je souhaite renouveler mon abonnement IA Pro Tools. Mon nom est '+session.nom;
+}
+</script>
+</body>
+    </html>
