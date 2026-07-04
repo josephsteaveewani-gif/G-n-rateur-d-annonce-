@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Connexion - IA Pro Tools</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Poppins',sans-serif;min-height:100vh;background:linear-gradient(135deg,#667eea 0%,#764ba2 50%,#f093fb 100%);display:flex;align-items:center;justify-content:center;padding:20px}
+.login-card{background:white;border-radius:24px;padding:35px 25px;width:100%;max-width:380px;box-shadow:0 20px 60px rgba(0,0,0,0.2)}
+.logo{text-align:center;margin-bottom:25px}
+.logo .icon{font-size:45px;margin-bottom:8px}
+.logo h1{font-size:22px;font-weight:800;background:linear-gradient(135deg,#667eea,#764ba2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.logo p{color:#888;font-size:13px;margin-top:3px}
+.form-group{margin-bottom:15px}
+.form-group label{display:block;font-size:11px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px}
+.form-group input{width:100%;padding:13px 15px;border:2px solid #f0f0f0;border-radius:12px;font-size:14px;font-family:'Poppins',sans-serif;color:#1a1a2e;transition:border-color 0.2s}
+.form-group input:focus{outline:none;border-color:#667eea;box-shadow:0 0 0 4px #667eea15}
+.login-btn{width:100%;padding:15px;background:linear-gradient(135deg,#667eea,#764ba2);color:white;border:none;border-radius:50px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Poppins',sans-serif;margin-top:5px;box-shadow:0 8px 20px rgba(102,126,234,0.3)}
+.login-btn:disabled{background:#ccc;box-shadow:none}
+.error-msg{background:#fef2f2;border:1px solid #fecaca;color:#ef4444;padding:12px;border-radius:10px;font-size:13px;margin-top:12px;display:none;text-align:center}
+.divider{display:flex;align-items:center;gap:10px;margin:20px 0}
+.divider span{font-size:12px;color:#bbb}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:#f0f0f0}
+.help-links{text-align:center}
+.help-links a{color:#667eea;font-size:13px;text-decoration:none;font-weight:600}
+.back-link{display:block;text-align:center;margin-top:15px;color:#aaa;font-size:12px;text-decoration:none}
+.secure{display:flex;align-items:center;justify-content:center;gap:5px;color:#aaa;font-size:11px;margin-top:20px}
+.info-box{background:#f0f4ff;border:1px solid #c7d7ff;border-radius:12px;padding:12px 15px;margin-bottom:20px;font-size:12px;color:#4a5fa5;line-height:1.5}
+</style>
+</head>
+<body>
+<div class="login-card">
+  <div class="logo">
+    <div class="icon">🔐</div>
+    <h1>IA Pro Tools</h1>
+    <p>Connectez-vous pour accéder à vos outils</p>
+  </div>
+
+  <div class="info-box">
+    💡 Entrez votre email et le code d'accès reçu sur WhatsApp après votre abonnement.
+  </div>
+
+  <div class="form-group">
+    <label>Adresse email ou numéro WhatsApp</label>
+    <input type="text" id="email" placeholder="Ex : 069475693 ou email@gmail.com">
+  </div>
+
+  <div class="form-group">
+    <label>Code d'accès</label>
+    <input type="text" id="code" placeholder="Ex : IMMO-2026-X7K9" style="letter-spacing:2px;text-transform:uppercase">
+  </div>
+
+  <button class="login-btn" onclick="seConnecter()" id="loginBtn">
+    🚀 Se connecter
+  </button>
+
+  <div class="error-msg" id="errorMsg"></div>
+
+  <div class="divider"><span>ou</span></div>
+
+  <div class="help-links">
+    <a href="https://wa.me/242069475693">📱 Pas encore abonné ? Contactez-nous</a>
+  </div>
+
+  <a href="index.html" class="back-link">← Retour à l'accueil</a>
+
+  <div class="secure">🔒 Connexion sécurisée • Données protégées</div>
+</div>
+
+<script>
+// Base de données des abonnés (gérée depuis l'admin)
+// Format : { identifiant, code, outils[], expiration }
+function getAbonnes(){
+  return JSON.parse(localStorage.getItem('abonnes')||'[]');
+}
+
+function seConnecter(){
+  const email=document.getElementById('email').value.trim().toLowerCase();
+  const code=document.getElementById('code').value.trim().toUpperCase();
+  const errorMsg=document.getElementById('errorMsg');
+  const btn=document.getElementById('loginBtn');
+
+  if(!email||!code){
+    errorMsg.textContent='⚠️ Veuillez remplir tous les champs.';
+    errorMsg.style.display='block';
+    return;
+  }
+
+  btn.disabled=true;
+  btn.textContent='Vérification...';
+  errorMsg.style.display='none';
+
+  // Simuler un délai de vérification
+  setTimeout(()=>{
+    const abonnes=getAbonnes();
+    const abonne=abonnes.find(a=>{
+      const identifiantMatch=
+        a.whatsapp?.toLowerCase().includes(email)||
+        a.email?.toLowerCase()===email||
+        a.whatsapp===email;
+      const codeMatch=a.codeAcces?.toUpperCase()===code;
+      return identifiantMatch&&codeMatch;
+    });
+
+    if(!abonne){
+      errorMsg.textContent='❌ Identifiant ou code d\'accès incorrect. Vérifiez vos informations ou contactez-nous sur WhatsApp.';
+      errorMsg.style.display='block';
+      btn.disabled=false;
+      btn.textContent='🚀 Se connecter';
+      return;
+    }
+
+    // Vérifier expiration
+    const today=new Date();
+    const expiration=new Date(abonne.expiration);
+    if(today>expiration){
+      errorMsg.textContent='⏰ Votre abonnement a expiré le '+expiration.toLocaleDateString('fr-FR')+'. Renouvelez sur WhatsApp au 069 475 693.';
+      errorMsg.style.display='block';
+      btn.disabled=false;
+      btn.textContent='🚀 Se connecter';
+      return;
+    }
+
+    // Connexion réussie — sauvegarder la session
+    const session={
+      nom:abonne.nom,
+      whatsapp:abonne.whatsapp,
+      outils:abonne.outils,
+      expiration:abonne.expiration,
+      loginTime:new Date().toISOString()
+    };
+    sessionStorage.setItem('session',JSON.stringify(session));
+    window.location.href='dashboard.html';
+
+  },1000);
+}
+</script>
+</body>
+  </html>
