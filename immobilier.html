@@ -141,6 +141,19 @@ function copier(){
   document.getElementById('copy-btn').textContent='✅ Copié !';
   setTimeout(()=>document.getElementById('copy-btn').textContent='📋 Copier',2000);
 }
+<script>
+(function(){
+  const session=JSON.parse(sessionStorage.getItem('session')||'null');
+  if(!session){window.location.href='connexion.html';return;}
+  const today=new Date();
+  const exp=new Date(session.expiration);
+  if(today>exp){sessionStorage.removeItem('session');window.location.href='connexion.html';return;}
+  const outilActif=sessionStorage.getItem('outilActif')||'';
+  if(!session.outils.includes('Immobilier')){
+    alert('Vous n\'avez pas accès à cet outil. Contactez-nous sur WhatsApp.');
+    window.location.href='dashboard.html';
+  }
+})();
 </script>
 </body>
     </html>
