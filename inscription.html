@@ -3,237 +3,452 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Inscription - IA Pro Tools</title>
+<title>Admin - IA Pro Tools</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Poppins',sans-serif;background:#f8f9ff;min-height:100vh}
-.top-bar{background:linear-gradient(135deg,#667eea,#764ba2);padding:15px 20px;display:flex;align-items:center}
-.top-bar a{color:rgba(255,255,255,0.8);text-decoration:none;font-size:13px}
-.top-bar .brand{color:white;font-weight:700;font-size:15px;margin:0 auto}
-.hero-mini{background:linear-gradient(135deg,#667eea,#764ba2,#f093fb);padding:30px 20px;text-align:center}
-.hero-mini h1{font-size:22px;font-weight:800;color:white;margin-bottom:5px}
-.hero-mini p{color:rgba(255,255,255,0.85);font-size:13px}
-.container{max-width:500px;margin:0 auto;padding:20px}
+.login-screen{position:fixed;inset:0;background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;justify-content:center;z-index:1000;padding:20px}
+.login-card{background:white;border-radius:24px;padding:35px 25px;width:100%;max-width:380px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.3)}
+.login-card .logo{font-size:40px;margin-bottom:10px}
+.login-card h1{font-size:22px;font-weight:800;color:#1a1a2e;margin-bottom:5px}
+.login-card p{color:#888;font-size:13px;margin-bottom:25px}
+.login-card input{width:100%;padding:13px;border:2px solid #f0f0f0;border-radius:12px;font-size:15px;font-family:'Poppins',sans-serif;text-align:center;letter-spacing:2px;margin-bottom:15px}
+.login-card input:focus{outline:none;border-color:#667eea}
+.login-card button{width:100%;padding:14px;background:linear-gradient(135deg,#667eea,#764ba2);color:white;border:none;border-radius:50px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Poppins',sans-serif}
+.login-error{color:#f5576c;font-size:13px;margin-top:10px;display:none}
+.dashboard{display:none}
+.top-bar{background:linear-gradient(135deg,#667eea,#764ba2);padding:15px 20px;display:flex;align-items:center;justify-content:space-between}
+.top-bar .brand{color:white;font-weight:700;font-size:16px}
+.top-bar .logout{color:rgba(255,255,255,0.8);font-size:13px;cursor:pointer;background:rgba(255,255,255,0.2);padding:6px 12px;border-radius:50px;border:none;font-family:'Poppins',sans-serif}
 
-/* SECTEURS */
-.section-title{font-size:14px;font-weight:700;color:#1a1a2e;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px}
-.secteurs-grid{display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
-.secteur-card{background:white;border-radius:16px;padding:16px;display:flex;align-items:center;gap:12px;cursor:pointer;border:2px solid transparent;box-shadow:0 2px 10px rgba(0,0,0,0.06);transition:all 0.2s}
-.secteur-card.selected{border-color:#667eea;background:#667eea08}
-.secteur-card.selected.resto{border-color:#f5576c;background:#f5576c08}
-.secteur-card.selected.ecom{border-color:#4facfe;background:#4facfe08}
-.secteur-icon{width:45px;height:45px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
-.secteur-card.immo .secteur-icon{background:#667eea15}
-.secteur-card.resto .secteur-icon{background:#f5576c15}
-.secteur-card.ecom .secteur-icon{background:#4facfe15}
-.secteur-info h3{font-size:15px;font-weight:700;color:#1a1a2e;margin-bottom:2px}
-.secteur-info p{font-size:11px;color:#888}
-.secteur-prix{font-size:13px;font-weight:800;margin-left:auto}
-.secteur-card.immo .secteur-prix{color:#667eea}
-.secteur-card.resto .secteur-prix{color:#f5576c}
-.secteur-card.ecom .secteur-prix{color:#4facfe}
-.secteur-check{width:22px;height:22px;border-radius:50%;border:2px solid #ddd;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;margin-left:8px}
-.secteur-card.selected .secteur-check{background:#667eea;border-color:#667eea;color:white}
-.secteur-card.selected.resto .secteur-check{background:#f5576c;border-color:#f5576c;color:white}
-.secteur-card.selected.ecom .secteur-check{background:#4facfe;border-color:#4facfe;color:white}
+/* TABS */
+.tabs{display:flex;background:white;border-bottom:2px solid #f0f0f0;padding:0 20px}
+.tab{padding:14px 16px;font-size:13px;font-weight:600;color:#888;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px}
+.tab.active{color:#667eea;border-bottom-color:#667eea}
 
-/* FORM */
-.form-card{background:white;border-radius:20px;padding:25px;box-shadow:0 5px 20px rgba(0,0,0,0.08);margin-bottom:20px}
-.form-card h2{font-size:18px;font-weight:700;color:#1a1a2e;margin-bottom:5px}
-.form-card .subtitle{font-size:13px;color:#888;margin-bottom:20px}
-.form-group{margin-bottom:16px}
-.form-group label{display:block;font-size:11px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px}
-.form-group input,.form-group select{width:100%;padding:13px 15px;border:2px solid #f0f0f0;border-radius:12px;font-size:14px;font-family:'Poppins',sans-serif;color:#1a1a2e;transition:border-color 0.2s}
-.form-group input:focus,.form-group select:focus{outline:none;border-color:#667eea;box-shadow:0 0 0 4px #667eea15}
-.submit-btn{width:100%;padding:16px;background:linear-gradient(135deg,#667eea,#764ba2);color:white;border:none;border-radius:50px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Poppins',sans-serif;box-shadow:0 8px 20px rgba(102,126,234,0.3)}
-.submit-btn:disabled{background:#ccc;box-shadow:none}
-.error{color:#f5576c;font-size:12px;margin-top:8px;display:none;font-weight:500}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:20px;max-width:600px;margin:0 auto}
+.stat-card{background:white;border-radius:16px;padding:18px;box-shadow:0 2px 10px rgba(0,0,0,0.06);text-align:center}
+.stat-card .stat-icon{font-size:28px;margin-bottom:8px}
+.stat-card .stat-num{font-size:28px;font-weight:800;color:#1a1a2e}
+.stat-card .stat-label{font-size:12px;color:#888}
+.stat-card.attente .stat-num{color:#FFD700}
+.stat-card.actifs .stat-num{color:#43e97b}
+.stat-card.expires .stat-num{color:#f5576c}
+.stat-card.revenus .stat-num{color:#667eea}
 
-/* SUCCÈS */
-.success-screen{display:none;text-align:center;padding:20px}
-.success-icon{font-size:60px;margin-bottom:15px}
-.success-screen h2{font-size:22px;font-weight:800;color:#1a1a2e;margin-bottom:10px}
-.success-screen p{font-size:14px;color:#666;line-height:1.7;margin-bottom:25px}
-.whatsapp-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:16px;background:#25D366;color:white;border-radius:50px;font-weight:700;font-size:15px;text-decoration:none;box-shadow:0 8px 20px rgba(37,211,102,0.3);margin-bottom:12px}
-.info-box{background:#f0f4ff;border:1px solid #c7d7ff;border-radius:12px;padding:15px;font-size:13px;color:#4a5fa5;line-height:1.6;text-align:left;margin-bottom:15px}
-.info-box strong{color:#667eea}
-.secure{display:flex;align-items:center;justify-content:center;gap:6px;color:#aaa;font-size:12px;margin-top:15px}
+.section{padding:0 20px 20px;max-width:600px;margin:0 auto}
+.search-input{width:100%;padding:10px 15px;border:2px solid #f0f0f0;border-radius:50px;font-size:13px;font-family:'Poppins',sans-serif;margin-bottom:12px}
+.search-input:focus{outline:none;border-color:#667eea}
+
+/* CARTES INSCRITS */
+.inscrit-card{background:white;border-radius:16px;padding:16px;margin-bottom:10px;box-shadow:0 2px 10px rgba(0,0,0,0.06);border-left:4px solid #FFD700}
+.inscrit-card.actif{border-left-color:#43e97b}
+.inscrit-card.expire{border-left-color:#f5576c}
+.inscrit-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.inscrit-nom{font-size:15px;font-weight:700;color:#1a1a2e}
+.status-badge{padding:4px 10px;border-radius:50px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px}
+.status-badge.en_attente{background:#FFD70020;color:#8B6914}
+.status-badge.actif{background:#43e97b20;color:#2d8a50}
+.status-badge.expire{background:#f5576c20;color:#c0392b}
+.inscrit-info{font-size:12px;color:#888;line-height:1.8;margin-bottom:10px}
+.inscrit-info strong{color:#555}
+.code-box{background:#f0f4ff;border:1px solid #c7d7ff;border-radius:8px;padding:8px 12px;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between}
+.code-box .code{font-size:14px;font-weight:800;color:#667eea;letter-spacing:2px;font-family:monospace}
+.code-box .copy-btn{background:#667eea;color:white;border:none;border-radius:6px;padding:4px 10px;font-size:11px;cursor:pointer;font-family:'Poppins',sans-serif}
+.actions{display:flex;gap:6px;flex-wrap:wrap}
+.btn-action{padding:6px 12px;border:none;border-radius:50px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Poppins',sans-serif}
+.btn-activer{background:#43e97b20;color:#2d8a50}
+.btn-whatsapp{background:#25D36615;color:#1a9e4a}
+.btn-envoyer-code{background:#667eea15;color:#667eea}
+.btn-renouveler{background:#4facfe15;color:#1a7fd4}
+.btn-supprimer{background:#f5576c15;color:#c0392b}
+
+.add-btn{position:fixed;bottom:20px;right:20px;width:56px;height:56px;background:linear-gradient(135deg,#667eea,#764ba2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;color:white;cursor:pointer;box-shadow:0 8px 20px rgba(102,126,234,0.4);border:none}
+
+/* MODAL */
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:500;align-items:flex-end;justify-content:center}
+.modal.open{display:flex}
+.modal-content{background:white;border-radius:24px 24px 0 0;padding:25px;width:100%;max-width:500px;max-height:90vh;overflow-y:auto}
+.modal-content h2{font-size:18px;font-weight:700;color:#1a1a2e;margin-bottom:20px}
+.form-group{margin-bottom:12px}
+.form-group label{display:block;font-size:11px;font-weight:700;color:#888;text-transform:uppercase;margin-bottom:5px}
+.form-group input,.form-group select{width:100%;padding:11px;border:2px solid #f0f0f0;border-radius:10px;font-size:14px;font-family:'Poppins',sans-serif;color:#1a1a2e}
+.form-group input:focus,.form-group select:focus{outline:none;border-color:#667eea}
+.code-genere{background:#f0f4ff;border:1px solid #c7d7ff;border-radius:10px;padding:12px;text-align:center;margin:10px 0}
+.code-genere .label{font-size:11px;color:#888;margin-bottom:5px}
+.code-genere .code{font-size:20px;font-weight:800;color:#667eea;letter-spacing:3px;font-family:monospace}
+.modal-btns{display:flex;gap:10px;margin-top:15px}
+.modal-btns button{flex:1;padding:13px;border-radius:50px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Poppins',sans-serif;border:none}
+.btn-cancel{background:#f0f0f0;color:#888}
+.btn-save{background:linear-gradient(135deg,#667eea,#764ba2);color:white}
+
+.empty-state{text-align:center;padding:40px 20px;color:#aaa}
+.empty-state .empty-icon{font-size:50px;margin-bottom:10px}
+.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#1a1a2e;color:white;padding:10px 20px;border-radius:50px;font-size:13px;z-index:1000;display:none;white-space:nowrap}
 </style>
 </head>
 <body>
 
-<div class="top-bar">
-  <a href="index.html">← Retour</a>
-  <span class="brand">✨ IA Pro Tools</span>
+<div class="login-screen" id="loginScreen">
+  <div class="login-card">
+    <div class="logo">🔐</div>
+    <h1>Espace Admin</h1>
+    <p>Connectez-vous pour gérer vos abonnés</p>
+    <input type="password" id="passwordInput" placeholder="Mot de passe" onkeydown="if(event.key==='Enter')login()">
+    <button onclick="login()">Se connecter →</button>
+    <p class="login-error" id="loginError">❌ Mot de passe incorrect</p>
+  </div>
 </div>
 
-<div class="hero-mini">
-  <h1>Créer mon compte</h1>
-  <p>Choisissez votre secteur et renseignez vos informations</p>
-</div>
+<div class="dashboard" id="dashboard">
+  <div class="top-bar">
+    <span class="brand">⚡ Admin — IA Pro Tools</span>
+    <button class="logout" onclick="logout()">Déconnexion</button>
+  </div>
 
-<div class="container">
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab('inscrits',this)">📋 Inscrits</div>
+    <div class="tab" onclick="switchTab('abonnes',this)">✅ Abonnés actifs</div>
+    <div class="tab" onclick="switchTab('stats',this)">📊 Statistiques</div>
+  </div>
 
-  <!-- CHOIX SECTEUR -->
-  <div id="formSection">
-    <div class="section-title">🎯 Choisissez votre secteur</div>
-    <div class="secteurs-grid">
-      <div class="secteur-card immo" id="card-immo" onclick="selectSecteur('immo','Immobilier')">
-        <div class="secteur-icon">🏠</div>
-        <div class="secteur-info">
-          <h3>Immobilier</h3>
-          <p>Annonces professionnelles</p>
-        </div>
-        <span class="secteur-prix">15 000 FCFA</span>
-        <div class="secteur-check" id="check-immo"></div>
-      </div>
-      <div class="secteur-card resto" id="card-resto" onclick="selectSecteur('resto','Restaurant')">
-        <div class="secteur-icon">🍽️</div>
-        <div class="secteur-info">
-          <h3>Restaurant</h3>
-          <p>Descriptions de menu</p>
-        </div>
-        <span class="secteur-prix">15 000 FCFA</span>
-        <div class="secteur-check" id="check-resto"></div>
-      </div>
-      <div class="secteur-card ecom" id="card-ecom" onclick="selectSecteur('ecom','E-commerce')">
-        <div class="secteur-icon">🛍️</div>
-        <div class="secteur-info">
-          <h3>E-commerce</h3>
-          <p>Fiches produits</p>
-        </div>
-        <span class="secteur-prix">15 000 FCFA</span>
-        <div class="secteur-check" id="check-ecom"></div>
-      </div>
-      <div class="secteur-card" id="card-pack" onclick="selectSecteur('pack','Pack complet')" style="border-left:4px solid #f093fb">
-        <div class="secteur-icon" style="background:#f093fb15">💎</div>
-        <div class="secteur-info">
-          <h3>Pack complet</h3>
-          <p>Les 3 outils inclus</p>
-        </div>
-        <span class="secteur-prix" style="color:#f093fb">45 000 FCFA</span>
-        <div class="secteur-check" id="check-pack"></div>
-      </div>
+  <!-- STATS -->
+  <div class="stats-grid">
+    <div class="stat-card attente">
+      <div class="stat-icon">⏳</div>
+      <div class="stat-num" id="statAttente">0</div>
+      <div class="stat-label">En attente</div>
     </div>
-
-    <!-- FORMULAIRE -->
-    <div class="form-card">
-      <h2>👤 Vos informations</h2>
-      <p class="subtitle">Remplissez le formulaire pour créer votre compte</p>
-
-      <div class="form-group">
-        <label>Nom complet</label>
-        <input type="text" id="nom" placeholder="Ex : Jean Dupont">
-      </div>
-      <div class="form-group">
-        <label>Numéro WhatsApp</label>
-        <input type="tel" id="whatsapp" placeholder="Ex : 069475693">
-      </div>
-      <div class="form-group">
-        <label>Ville</label>
-        <input type="text" id="ville" placeholder="Ex : Brazzaville">
-      </div>
-
-      <p class="error" id="error">⚠️ Veuillez remplir tous les champs et choisir un secteur.</p>
-      <button class="submit-btn" onclick="inscrire()" id="btn">Continuer →</button>
-      <div class="secure">🔒 Vos données sont sécurisées et confidentielles</div>
+    <div class="stat-card actifs">
+      <div class="stat-icon">✅</div>
+      <div class="stat-num" id="statActifs">0</div>
+      <div class="stat-label">Actifs</div>
+    </div>
+    <div class="stat-card expires">
+      <div class="stat-icon">⚠️</div>
+      <div class="stat-num" id="statExpires">0</div>
+      <div class="stat-label">Expirés</div>
+    </div>
+    <div class="stat-card revenus">
+      <div class="stat-icon">💰</div>
+      <div class="stat-num" id="statRevenus">0</div>
+      <div class="stat-label">FCFA/mois</div>
     </div>
   </div>
 
-  <!-- ÉCRAN SUCCÈS -->
-  <div class="success-screen" id="successScreen">
-    <div class="success-icon">🎉</div>
-    <h2>Inscription réussie !</h2>
-    <p>Merci <strong id="nomClient"></strong> ! Votre compte a été créé avec succès.<br><br>Pour finaliser votre abonnement et activer votre accès aux outils IA, contactez-nous directement sur <strong>WhatsApp</strong>. Nous vous indiquerons le montant exact à payer selon votre choix.</p>
-
-    <div class="info-box">
-      📋 <strong>Votre sélection :</strong><br>
-      Secteur : <strong id="secteurChoisi"></strong><br>
-      Tarif indicatif : <strong id="prixChoisi"></strong>/mois<br><br>
-      💬 Envoyez-nous un message WhatsApp pour confirmer votre abonnement et recevoir votre code d'accès.
-    </div>
-
-    <a id="whatsappLink" href="#" class="whatsapp-btn">
-      💬 Contacter sur WhatsApp
-    </a>
-
-    <a href="index.html" style="display:block;text-align:center;color:#aaa;font-size:13px;text-decoration:none;margin-top:10px">← Retour à l'accueil</a>
+  <div class="section">
+    <input type="text" class="search-input" placeholder="🔍 Rechercher un inscrit..." oninput="filtrer(this.value)" id="searchInput">
+    <div id="listeInscrits"></div>
   </div>
+</div>
 
+<button class="add-btn" onclick="ouvrirModal()" id="addBtn" style="display:none">+</button>
+<div class="toast" id="toast"></div>
+
+<!-- MODAL AJOUT MANUEL -->
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <h2>➕ Ajouter manuellement</h2>
+    <div class="form-group">
+      <label>Nom complet *</label>
+      <input type="text" id="m-nom" placeholder="Jean Dupont">
+    </div>
+    <div class="form-group">
+      <label>WhatsApp *</label>
+      <input type="tel" id="m-whatsapp" placeholder="+242069XXXXXXX">
+    </div>
+    <div class="form-group">
+      <label>Ville</label>
+      <input type="text" id="m-ville" placeholder="Brazzaville">
+    </div>
+    <div class="form-group">
+      <label>Secteur *</label>
+      <select id="m-secteur">
+        <option value="Immobilier">🏠 Immobilier — 15 000 FCFA</option>
+        <option value="Restaurant">🍽️ Restaurant — 15 000 FCFA</option>
+        <option value="E-commerce">🛍️ E-commerce — 15 000 FCFA</option>
+        <option value="Pack complet">💎 Pack complet — 45 000 FCFA</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Statut</label>
+      <select id="m-statut">
+        <option value="en_attente">⏳ En attente de paiement</option>
+        <option value="actif">✅ Actif</option>
+      </select>
+    </div>
+    <div class="form-group" id="dateGroup">
+      <label>Date d'expiration (si actif)</label>
+      <input type="date" id="m-expiration">
+    </div>
+    <div class="code-genere" id="codeBox" style="display:none">
+      <div class="label">Code d'accès généré</div>
+      <div class="code" id="codeGenere">—</div>
+    </div>
+    <div class="modal-btns">
+      <button class="btn-cancel" onclick="fermerModal()">Annuler</button>
+      <button class="btn-save" onclick="ajouterManuellement()">✅ Enregistrer</button>
+    </div>
+  </div>
 </div>
 
 <script>
-let secteurSelectionne='';
-let prixSelectionne='';
+const MOT_DE_PASSE='IAPro@2026#Steave';
+let ongletActif='inscrits';
+let codeActuel='';
 
-function selectSecteur(id,nom){
-  // Déselectionner tout
-  ['immo','resto','ecom','pack'].forEach(s=>{
-    document.getElementById('card-'+s).classList.remove('selected','immo','resto','ecom');
-    document.getElementById('check-'+s).textContent='';
-  });
-  // Sélectionner
-  const card=document.getElementById('card-'+id);
-  card.classList.add('selected');
-  if(id!=='pack')card.classList.add(id);
-  document.getElementById('check-'+id).textContent='✓';
-  secteurSelectionne=nom;
-  prixSelectionne=nom==='Pack complet'?'45 000 FCFA':nom==='Immobilier'||nom==='Restaurant'||nom==='E-commerce'?'15 000 FCFA':'15 000 FCFA';
+function login(){
+  const pwd=document.getElementById('passwordInput').value;
+  if(pwd===MOT_DE_PASSE){
+    document.getElementById('loginScreen').style.display='none';
+    document.getElementById('dashboard').style.display='block';
+    document.getElementById('addBtn').style.display='flex';
+    afficher();
+  }else{
+    document.getElementById('loginError').style.display='block';
+  }
 }
 
-function inscrire(){
-  const nom=document.getElementById('nom').value.trim();
-  const whatsapp=document.getElementById('whatsapp').value.trim();
-  const ville=document.getElementById('ville').value.trim();
-  const error=document.getElementById('error');
+function logout(){
+  document.getElementById('loginScreen').style.display='flex';
+  document.getElementById('dashboard').style.display='none';
+  document.getElementById('addBtn').style.display='none';
+  document.getElementById('passwordInput').value='';
+}
 
-  if(!nom||!whatsapp||!ville||!secteurSelectionne){
-    error.style.display='block';
+function switchTab(tab,el){
+  ongletActif=tab;
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('searchInput').value='';
+  afficher();
+}
+
+function getData(){
+  const inscrits=JSON.parse(localStorage.getItem('inscrits')||'[]');
+  const abonnes=JSON.parse(localStorage.getItem('abonnes')||'[]');
+  // Fusionner — les abonnés sont aussi des inscrits
+  const tous=[...inscrits];
+  abonnes.forEach(a=>{
+    if(!tous.find(i=>i.whatsapp===a.whatsapp)){
+      tous.push({...a,statut:getStatutAbonne(a.expiration)});
+    }
+  });
+  return tous;
+}
+
+function getStatutAbonne(exp){
+  if(!exp)return'en_attente';
+  const today=new Date();
+  const expDate=new Date(exp);
+  const diff=Math.ceil((expDate-today)/(1000*60*60*24));
+  if(diff<0)return'expire';
+  return'actif';
+}
+
+function getPrix(secteur){
+  return secteur==='Pack complet'?45000:15000;
+}
+
+function genererCode(secteur='GEN'){
+  const prefix=secteur==='Pack complet'?'PACK':
+    secteur==='Immobilier'?'IMMO':
+    secteur==='Restaurant'?'RESTO':
+    secteur==='E-commerce'?'ECOM':'GEN';
+  const chars='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  let code='';
+  for(let i=0;i<6;i++)code+=chars[Math.floor(Math.random()*chars.length)];
+  return prefix+'-2026-'+code;
+}
+
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;
+  t.style.display='block';
+  setTimeout(()=>t.style.display='none',3000);
+}
+
+function afficher(filtre=''){
+  const tous=getData();
+  let liste=[];
+
+  if(ongletActif==='inscrits'){
+    liste=tous.filter(a=>a.statut==='en_attente'||!a.statut);
+  }else if(ongletActif==='abonnes'){
+    liste=tous.filter(a=>a.statut==='actif'||a.statut==='expire');
+  }else{
+    liste=tous;
+  }
+
+  if(filtre){
+    liste=liste.filter(a=>
+      (a.nom||'').toLowerCase().includes(filtre.toLowerCase())||
+      (a.whatsapp||'').includes(filtre)||
+      (a.secteur||'').toLowerCase().includes(filtre.toLowerCase())
+    );
+  }
+
+  // Stats
+  const attente=tous.filter(a=>a.statut==='en_attente'||!a.statut).length;
+  const actifs=tous.filter(a=>a.statut==='actif').length;
+  const expires=tous.filter(a=>a.statut==='expire').length;
+  const revenus=tous.filter(a=>a.statut==='actif').reduce((s,a)=>s+getPrix(a.secteur),0);
+  document.getElementById('statAttente').textContent=attente;
+  document.getElementById('statActifs').textContent=actifs;
+  document.getElementById('statExpires').textContent=expires;
+  document.getElementById('statRevenus').textContent=revenus.toLocaleString('fr-FR');
+
+  const container=document.getElementById('listeInscrits');
+
+  if(liste.length===0){
+    container.innerHTML=`<div class="empty-state"><div class="empty-icon">📭</div><p>Aucun résultat trouvé.</p></div>`;
     return;
   }
-  error.style.display='none';
 
-  const btn=document.getElementById('btn');
-  btn.disabled=true;
-  btn.textContent='Enregistrement...';
+  container.innerHTML=liste.map((a,i)=>{
+    const statut=a.statut||'en_attente';
+    const badge=statut==='actif'?'✅ Actif':statut==='expire'?'❌ Expiré':'⏳ En attente';
+    const exp=a.expiration?new Date(a.expiration).toLocaleDateString('fr-FR'):'—';
+    const wa=encodeURIComponent('Bonjour '+a.nom+' ! Votre abonnement IA Pro Tools est maintenant actif.\n\n🔑 Votre code d\'accès : *'+(a.codeAcces||'—')+'*\n\n🌐 Connectez-vous sur :\ng-n-rateur-d-annonce.vercel.app/connexion.html\n\n📅 Votre abonnement expire le : '+exp+'\n\nMerci de votre confiance ! 🎉');
 
-  // Sauvegarder dans localStorage pour l'admin
+    return`<div class="inscrit-card ${statut}" id="card-${i}">
+      <div class="inscrit-header">
+        <span class="inscrit-nom">${a.nom||'—'}</span>
+        <span class="status-badge ${statut}">${badge}</span>
+      </div>
+      <div class="inscrit-info">
+        <strong>📱</strong> ${a.whatsapp||'—'}<br>
+        <strong>📍</strong> ${a.ville||'—'}<br>
+        <strong>🎯</strong> ${a.secteur||'—'} — ${getPrix(a.secteur).toLocaleString('fr-FR')} FCFA/mois<br>
+        <strong>📅</strong> Inscrit le ${a.date||'—'} à ${a.heure||'—'}<br>
+        ${a.expiration?'<strong>⏰</strong> Expire le '+exp:''}
+      </div>
+      ${a.codeAcces?`<div class="code-box"><span class="code">${a.codeAcces}</span><button class="copy-btn" onclick="copier('${a.codeAcces}')">📋 Copier</button></div>`:''}
+      <div class="actions">
+        ${statut==='en_attente'?`<button class="btn-action btn-activer" onclick="activer(${a.id||i})">✅ Activer</button>`:''}
+        ${statut==='actif'?`<button class="btn-action btn-renouveler" onclick="renouveler(${a.id||i})">🔄 +30j</button>`:''}
+        <button class="btn-action btn-whatsapp" onclick="window.open('https://wa.me/${(a.whatsapp||'').replace(/[^0-9]/g,'')}')">💬 WhatsApp</button>
+        ${a.codeAcces?`<button class="btn-action btn-envoyer-code" onclick="window.open('https://wa.me/${(a.whatsapp||'').replace(/[^0-9]/g,'')}?text=${wa}')">📤 Envoyer code</button>`:''}
+        <button class="btn-action btn-supprimer" onclick="supprimer(${a.id||i})">🗑️ Supprimer</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function filtrer(val){afficher(val);}
+
+function copier(code){
+  navigator.clipboard.writeText(code);
+  showToast('✅ Code copié : '+code);
+}
+
+function activer(id){
   const inscrits=JSON.parse(localStorage.getItem('inscrits')||'[]');
-  const nouvelInscrit={
-    id:Date.now(),
-    nom,
-    whatsapp,
-    ville,
-    secteur:secteurSelectionne,
-    prix:prixSelectionne,
+  const abonnes=JSON.parse(localStorage.getItem('abonnes')||'[]');
+
+  // Trouver dans inscrits
+  const idx=inscrits.findIndex(a=>a.id===id);
+  if(idx>=0){
+    const inscrit=inscrits[idx];
+    const code=genererCode(inscrit.secteur);
+    const exp=new Date();exp.setDate(exp.getDate()+30);
+
+    // Créer abonné
+    const abonne={
+      ...inscrit,
+      codeAcces:code,
+      expiration:exp.toISOString().split('T')[0],
+      statut:'actif'
+    };
+    abonnes.push(abonne);
+    localStorage.setItem('abonnes',JSON.stringify(abonnes));
+
+    // Supprimer des inscrits
+    inscrits.splice(idx,1);
+    localStorage.setItem('inscrits',JSON.stringify(inscrits));
+
+    showToast('✅ Abonné activé ! Code : '+code);
+    afficher();
+  }
+}
+
+function renouveler(id){
+  const abonnes=JSON.parse(localStorage.getItem('abonnes')||'[]');
+  const idx=abonnes.findIndex(a=>a.id===id);
+  if(idx>=0){
+    const exp=new Date(abonnes[idx].expiration||new Date());
+    exp.setDate(exp.getDate()+30);
+    abonnes[idx].expiration=exp.toISOString().split('T')[0];
+    abonnes[idx].statut='actif';
+    localStorage.setItem('abonnes',JSON.stringify(abonnes));
+    showToast('🔄 Abonnement renouvelé de 30 jours');
+    afficher();
+  }
+}
+
+function supprimer(id){
+  if(!confirm('Supprimer cet inscrit ?'))return;
+  let inscrits=JSON.parse(localStorage.getItem('inscrits')||'[]');
+  let abonnes=JSON.parse(localStorage.getItem('abonnes')||'[]');
+  inscrits=inscrits.filter(a=>a.id!==id);
+  abonnes=abonnes.filter(a=>a.id!==id);
+  localStorage.setItem('inscrits',JSON.stringify(inscrits));
+  localStorage.setItem('abonnes',JSON.stringify(abonnes));
+  showToast('🗑️ Supprimé');
+  afficher();
+}
+
+function ouvrirModal(){
+  const today=new Date().toISOString().split('T')[0];
+  const exp=new Date();exp.setDate(exp.getDate()+30);
+  document.getElementById('m-expiration').value=exp.toISOString().split('T')[0];
+  document.getElementById('m-nom').value='';
+  document.getElementById('m-whatsapp').value='';
+  document.getElementById('m-ville').value='';
+  document.getElementById('codeBox').style.display='none';
+  document.getElementById('modal').classList.add('open');
+}
+
+function fermerModal(){document.getElementById('modal').classList.remove('open');}
+
+function ajouterManuellement(){
+  const nom=document.getElementById('m-nom').value.trim();
+  const whatsapp=document.getElementById('m-whatsapp').value.trim();
+  const ville=document.getElementById('m-ville').value.trim();
+  const secteur=document.getElementById('m-secteur').value;
+  const statut=document.getElementById('m-statut').value;
+  const expiration=document.getElementById('m-expiration').value;
+  if(!nom||!whatsapp){alert('Nom et WhatsApp obligatoires.');return;}
+
+  const id=Date.now();
+  const nouvel={
+    id,nom,whatsapp,ville,secteur,statut,
     date:new Date().toLocaleDateString('fr-FR'),
     heure:new Date().toLocaleTimeString('fr-FR'),
-    statut:'en_attente'
   };
-  inscrits.push(nouvelInscrit);
-  localStorage.setItem('inscrits',JSON.stringify(inscrits));
 
-  // Envoyer au webhook Make (si disponible)
-  try{
-    fetch('https://hook.eu1.make.com/9ps63bbifempkoaoyy0eaurzffxeohlx',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({type:'inscription',...nouvelInscrit})
-    });
-  }catch(e){}
+  if(statut==='actif'){
+    nouvel.codeAcces=genererCode(secteur);
+    nouvel.expiration=expiration;
+    const abonnes=JSON.parse(localStorage.getItem('abonnes')||'[]');
+    abonnes.push(nouvel);
+    localStorage.setItem('abonnes',JSON.stringify(abonnes));
+    showToast('✅ Abonné ajouté ! Code : '+nouvel.codeAcces);
+  }else{
+    const inscrits=JSON.parse(localStorage.getItem('inscrits')||'[]');
+    inscrits.push(nouvel);
+    localStorage.setItem('inscrits',JSON.stringify(inscrits));
+    showToast('✅ Inscrit ajouté');
+  }
 
-  // Afficher l'écran succès
-  document.getElementById('formSection').style.display='none';
-  document.getElementById('successScreen').style.display='block';
-  document.getElementById('nomClient').textContent=nom;
-  document.getElementById('secteurChoisi').textContent=secteurSelectionne;
-  document.getElementById('prixChoisi').textContent=prixSelectionne;
-
-  // Lien WhatsApp avec message pré-rempli
-  const msg=encodeURIComponent('Bonjour, je viens de m\'inscrire sur IA Pro Tools.\n\nMon nom : '+nom+'\nSecteur choisi : '+secteurSelectionne+'\nVille : '+ville+'\n\nJe souhaite finaliser mon abonnement.');
-  document.getElementById('whatsappLink').href='https://wa.me/242069475693?text='+msg;
+  fermerModal();
+  afficher();
 }
+
+document.getElementById('m-statut')?.addEventListener('change',function(){
+  document.getElementById('codeBox').style.display=this.value==='actif'?'block':'none';
+});
 </script>
-</body>
-  </html>
+  </body>
+  
