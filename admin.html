@@ -21,40 +21,52 @@ body{font-family:'Poppins',sans-serif;background:#f8f9ff;min-height:100vh}
 .top-bar{background:linear-gradient(135deg,#667eea,#764ba2);padding:15px 20px;display:flex;align-items:center;justify-content:space-between}
 .top-bar .brand{color:white;font-weight:700;font-size:16px}
 .top-bar .logout{color:rgba(255,255,255,0.8);font-size:13px;cursor:pointer;background:rgba(255,255,255,0.2);padding:6px 12px;border-radius:50px;border:none;font-family:'Poppins',sans-serif}
+
+/* TABS */
+.tabs{display:flex;background:white;border-bottom:2px solid #f0f0f0;padding:0 20px}
+.tab{padding:14px 16px;font-size:13px;font-weight:600;color:#888;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px}
+.tab.active{color:#667eea;border-bottom-color:#667eea}
+
 .stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:20px;max-width:600px;margin:0 auto}
 .stat-card{background:white;border-radius:16px;padding:18px;box-shadow:0 2px 10px rgba(0,0,0,0.06);text-align:center}
 .stat-card .stat-icon{font-size:28px;margin-bottom:8px}
 .stat-card .stat-num{font-size:28px;font-weight:800;color:#1a1a2e}
-.stat-card .stat-label{font-size:12px;color:#888;font-weight:500}
+.stat-card .stat-label{font-size:12px;color:#888}
+.stat-card.attente .stat-num{color:#FFD700}
 .stat-card.actifs .stat-num{color:#43e97b}
 .stat-card.expires .stat-num{color:#f5576c}
 .stat-card.revenus .stat-num{color:#667eea}
+
 .section{padding:0 20px 20px;max-width:600px;margin:0 auto}
-.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-.section-header h2{font-size:16px;font-weight:700;color:#1a1a2e}
 .search-input{width:100%;padding:10px 15px;border:2px solid #f0f0f0;border-radius:50px;font-size:13px;font-family:'Poppins',sans-serif;margin-bottom:12px}
 .search-input:focus{outline:none;border-color:#667eea}
-.abonne-card{background:white;border-radius:16px;padding:16px;margin-bottom:10px;box-shadow:0 2px 10px rgba(0,0,0,0.06);border-left:4px solid #43e97b}
-.abonne-card.expire{border-left-color:#f5576c}
-.abonne-card.bientot{border-left-color:#FFD700}
-.abonne-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
-.abonne-nom{font-size:15px;font-weight:700;color:#1a1a2e}
+
+/* CARTES INSCRITS */
+.inscrit-card{background:white;border-radius:16px;padding:16px;margin-bottom:10px;box-shadow:0 2px 10px rgba(0,0,0,0.06);border-left:4px solid #FFD700}
+.inscrit-card.actif{border-left-color:#43e97b}
+.inscrit-card.expire{border-left-color:#f5576c}
+.inscrit-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.inscrit-nom{font-size:15px;font-weight:700;color:#1a1a2e}
 .status-badge{padding:4px 10px;border-radius:50px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px}
+.status-badge.en_attente{background:#FFD70020;color:#8B6914}
 .status-badge.actif{background:#43e97b20;color:#2d8a50}
 .status-badge.expire{background:#f5576c20;color:#c0392b}
-.status-badge.bientot{background:#FFD70020;color:#8B6914}
-.abonne-info{font-size:12px;color:#888;line-height:1.8}
-.abonne-info strong{color:#555}
-.code-box{background:#f0f4ff;border:1px solid #c7d7ff;border-radius:8px;padding:8px 12px;margin-top:8px;display:flex;align-items:center;justify-content:space-between}
+.inscrit-info{font-size:12px;color:#888;line-height:1.8;margin-bottom:10px}
+.inscrit-info strong{color:#555}
+.code-box{background:#f0f4ff;border:1px solid #c7d7ff;border-radius:8px;padding:8px 12px;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between}
 .code-box .code{font-size:14px;font-weight:800;color:#667eea;letter-spacing:2px;font-family:monospace}
 .code-box .copy-btn{background:#667eea;color:white;border:none;border-radius:6px;padding:4px 10px;font-size:11px;cursor:pointer;font-family:'Poppins',sans-serif}
-.abonne-actions{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.actions{display:flex;gap:6px;flex-wrap:wrap}
 .btn-action{padding:6px 12px;border:none;border-radius:50px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Poppins',sans-serif}
-.btn-renouveler{background:#667eea15;color:#667eea}
-.btn-whatsapp{background:#25D36615;color:#25D366}
-.btn-supprimer{background:#f5576c15;color:#f5576c}
-.btn-gencode{background:#764ba215;color:#764ba2}
+.btn-activer{background:#43e97b20;color:#2d8a50}
+.btn-whatsapp{background:#25D36615;color:#1a9e4a}
+.btn-envoyer-code{background:#667eea15;color:#667eea}
+.btn-renouveler{background:#4facfe15;color:#1a7fd4}
+.btn-supprimer{background:#f5576c15;color:#c0392b}
+
 .add-btn{position:fixed;bottom:20px;right:20px;width:56px;height:56px;background:linear-gradient(135deg,#667eea,#764ba2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;color:white;cursor:pointer;box-shadow:0 8px 20px rgba(102,126,234,0.4);border:none}
+
+/* MODAL */
 .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:500;align-items:flex-end;justify-content:center}
 .modal.open{display:flex}
 .modal-content{background:white;border-radius:24px 24px 0 0;padding:25px;width:100%;max-width:500px;max-height:90vh;overflow-y:auto}
@@ -70,9 +82,10 @@ body{font-family:'Poppins',sans-serif;background:#f8f9ff;min-height:100vh}
 .modal-btns button{flex:1;padding:13px;border-radius:50px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Poppins',sans-serif;border:none}
 .btn-cancel{background:#f0f0f0;color:#888}
 .btn-save{background:linear-gradient(135deg,#667eea,#764ba2);color:white}
+
 .empty-state{text-align:center;padding:40px 20px;color:#aaa}
 .empty-state .empty-icon{font-size:50px;margin-bottom:10px}
-.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#1a1a2e;color:white;padding:10px 20px;border-radius:50px;font-size:13px;z-index:1000;display:none}
+.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#1a1a2e;color:white;padding:10px 20px;border-radius:50px;font-size:13px;z-index:1000;display:none;white-space:nowrap}
 </style>
 </head>
 <body>
@@ -94,11 +107,18 @@ body{font-family:'Poppins',sans-serif;background:#f8f9ff;min-height:100vh}
     <button class="logout" onclick="logout()">Déconnexion</button>
   </div>
 
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab('inscrits',this)">📋 Inscrits</div>
+    <div class="tab" onclick="switchTab('abonnes',this)">✅ Abonnés actifs</div>
+    <div class="tab" onclick="switchTab('stats',this)">📊 Statistiques</div>
+  </div>
+
+  <!-- STATS -->
   <div class="stats-grid">
-    <div class="stat-card">
-      <div class="stat-icon">👥</div>
-      <div class="stat-num" id="statTotal">0</div>
-      <div class="stat-label">Total abonnés</div>
+    <div class="stat-card attente">
+      <div class="stat-icon">⏳</div>
+      <div class="stat-num" id="statAttente">0</div>
+      <div class="stat-label">En attente</div>
     </div>
     <div class="stat-card actifs">
       <div class="stat-icon">✅</div>
@@ -118,20 +138,18 @@ body{font-family:'Poppins',sans-serif;background:#f8f9ff;min-height:100vh}
   </div>
 
   <div class="section">
-    <div class="section-header">
-      <h2>📋 Mes abonnés</h2>
-    </div>
-    <input type="text" class="search-input" placeholder="🔍 Rechercher..." oninput="filtrer(this.value)">
-    <div id="listeAbonnes"></div>
+    <input type="text" class="search-input" placeholder="🔍 Rechercher un inscrit..." oninput="filtrer(this.value)" id="searchInput">
+    <div id="listeInscrits"></div>
   </div>
 </div>
 
 <button class="add-btn" onclick="ouvrirModal()" id="addBtn" style="display:none">+</button>
 <div class="toast" id="toast"></div>
 
+<!-- MODAL AJOUT MANUEL -->
 <div class="modal" id="modal">
   <div class="modal-content">
-    <h2>➕ Ajouter un abonné</h2>
+    <h2>➕ Ajouter manuellement</h2>
     <div class="form-group">
       <label>Nom complet *</label>
       <input type="text" id="m-nom" placeholder="Jean Dupont">
@@ -141,48 +159,43 @@ body{font-family:'Poppins',sans-serif;background:#f8f9ff;min-height:100vh}
       <input type="tel" id="m-whatsapp" placeholder="+242069XXXXXXX">
     </div>
     <div class="form-group">
-      <label>Email (optionnel)</label>
-      <input type="email" id="m-email" placeholder="jean@email.com">
+      <label>Ville</label>
+      <input type="text" id="m-ville" placeholder="Brazzaville">
     </div>
     <div class="form-group">
-      <label>Outils souscrits *</label>
-      <select id="m-outils">
+      <label>Secteur *</label>
+      <select id="m-secteur">
         <option value="Immobilier">🏠 Immobilier — 15 000 FCFA</option>
         <option value="Restaurant">🍽️ Restaurant — 15 000 FCFA</option>
         <option value="E-commerce">🛍️ E-commerce — 15 000 FCFA</option>
-        <option value="Immobilier, Restaurant">🏠+🍽️ Immobilier + Restaurant — 30 000 FCFA</option>
-        <option value="Immobilier, E-commerce">🏠+🛍️ Immobilier + E-commerce — 30 000 FCFA</option>
-        <option value="Restaurant, E-commerce">🍽️+🛍️ Restaurant + E-commerce — 30 000 FCFA</option>
-        <option value="Immobilier, Restaurant, E-commerce">💎 Pack complet — 45 000 FCFA</option>
+        <option value="Pack complet">💎 Pack complet — 45 000 FCFA</option>
       </select>
     </div>
     <div class="form-group">
-      <label>Code transaction MTN</label>
-      <input type="text" id="m-transaction" placeholder="TXN123456789">
+      <label>Statut</label>
+      <select id="m-statut">
+        <option value="en_attente">⏳ En attente de paiement</option>
+        <option value="actif">✅ Actif</option>
+      </select>
     </div>
-    <div class="form-group">
-      <label>Date de début *</label>
-      <input type="date" id="m-debut">
-    </div>
-    <div class="form-group">
-      <label>Date d'expiration *</label>
+    <div class="form-group" id="dateGroup">
+      <label>Date d'expiration (si actif)</label>
       <input type="date" id="m-expiration">
     </div>
-    <div class="code-genere">
-      <div class="label">Code d'accès généré automatiquement</div>
+    <div class="code-genere" id="codeBox" style="display:none">
+      <div class="label">Code d'accès généré</div>
       <div class="code" id="codeGenere">—</div>
     </div>
-    <button onclick="genererCode()" style="width:100%;padding:10px;background:#764ba215;color:#764ba2;border:none;border-radius:10px;font-weight:700;cursor:pointer;font-family:'Poppins',sans-serif;margin-bottom:5px">🔄 Regénérer le code</button>
     <div class="modal-btns">
       <button class="btn-cancel" onclick="fermerModal()">Annuler</button>
-      <button class="btn-save" onclick="ajouterAbonne()">✅ Enregistrer</button>
+      <button class="btn-save" onclick="ajouterManuellement()">✅ Enregistrer</button>
     </div>
   </div>
 </div>
 
 <script>
 const MOT_DE_PASSE='IAPro@2026#Steave';
-let abonnes=JSON.parse(localStorage.getItem('abonnes')||'[]');
+let ongletActif='inscrits';
 let codeActuel='';
 
 function login(){
@@ -191,7 +204,7 @@ function login(){
     document.getElementById('loginScreen').style.display='none';
     document.getElementById('dashboard').style.display='block';
     document.getElementById('addBtn').style.display='flex';
-    afficherAbonnes();
+    afficher();
   }else{
     document.getElementById('loginError').style.display='block';
   }
@@ -204,167 +217,238 @@ function logout(){
   document.getElementById('passwordInput').value='';
 }
 
-function genererCode(){
-  const outils=document.getElementById('m-outils')?.value||'GEN';
-  const prefix=outils.includes('Immobilier')&&outils.includes('Restaurant')&&outils.includes('E-commerce')?'PACK':
-    outils.includes('Immobilier')?'IMMO':
-    outils.includes('Restaurant')?'RESTO':
-    outils.includes('E-commerce')?'ECOM':'GEN';
-  const chars='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-  let code='';
-  for(let i=0;i<6;i++)code+=chars[Math.floor(Math.random()*chars.length)];
-  codeActuel=prefix+'-2026-'+code;
-  const el=document.getElementById('codeGenere');
-  if(el)el.textContent=codeActuel;
-  return codeActuel;
+function switchTab(tab,el){
+  ongletActif=tab;
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('searchInput').value='';
+  afficher();
 }
 
-function getStatut(dateExpiration){
+function getData(){
+  const inscrits=JSON.parse(localStorage.getItem('inscrits')||'[]');
+  const abonnes=JSON.parse(localStorage.getItem('abonnes')||'[]');
+  // Fusionner — les abonnés sont aussi des inscrits
+  const tous=[...inscrits];
+  abonnes.forEach(a=>{
+    if(!tous.find(i=>i.whatsapp===a.whatsapp)){
+      tous.push({...a,statut:getStatutAbonne(a.expiration)});
+    }
+  });
+  return tous;
+}
+
+function getStatutAbonne(exp){
+  if(!exp)return'en_attente';
   const today=new Date();
-  const exp=new Date(dateExpiration);
-  const diff=Math.ceil((exp-today)/(1000*60*60*24));
+  const expDate=new Date(exp);
+  const diff=Math.ceil((expDate-today)/(1000*60*60*24));
   if(diff<0)return'expire';
-  if(diff<=3)return'bientot';
   return'actif';
 }
 
-function getTotal(outils){
-  const nb=outils.split(',').length;
-  return nb===1?15000:nb===2?30000:45000;
+function getPrix(secteur){
+  return secteur==='Pack complet'?45000:15000;
+}
+
+function genererCode(secteur='GEN'){
+  const prefix=secteur==='Pack complet'?'PACK':
+    secteur==='Immobilier'?'IMMO':
+    secteur==='Restaurant'?'RESTO':
+    secteur==='E-commerce'?'ECOM':'GEN';
+  const chars='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  let code='';
+  for(let i=0;i<6;i++)code+=chars[Math.floor(Math.random()*chars.length)];
+  return prefix+'-2026-'+code;
 }
 
 function showToast(msg){
   const t=document.getElementById('toast');
   t.textContent=msg;
   t.style.display='block';
-  setTimeout(()=>t.style.display='none',2500);
+  setTimeout(()=>t.style.display='none',3000);
 }
 
-function copierCode(code){
-  navigator.clipboard.writeText(code);
-  showToast('✅ Code copié : '+code);
-}
+function afficher(filtre=''){
+  const tous=getData();
+  let liste=[];
 
-function afficherAbonnes(filtre=''){
-  const liste=document.getElementById('listeAbonnes');
-  const filtres=abonnes.filter(a=>
-    (a.nom||'').toLowerCase().includes(filtre.toLowerCase())||
-    (a.whatsapp||'').includes(filtre)||
-    (a.outils||'').toLowerCase().includes(filtre.toLowerCase())
-  );
+  if(ongletActif==='inscrits'){
+    liste=tous.filter(a=>a.statut==='en_attente'||!a.statut);
+  }else if(ongletActif==='abonnes'){
+    liste=tous.filter(a=>a.statut==='actif'||a.statut==='expire');
+  }else{
+    liste=tous;
+  }
 
-  const actifs=abonnes.filter(a=>getStatut(a.expiration)==='actif').length;
-  const expires=abonnes.filter(a=>getStatut(a.expiration)==='expire').length;
-  const revenus=abonnes.filter(a=>getStatut(a.expiration)==='actif').reduce((s,a)=>s+getTotal(a.outils),0);
-  document.getElementById('statTotal').textContent=abonnes.length;
+  if(filtre){
+    liste=liste.filter(a=>
+      (a.nom||'').toLowerCase().includes(filtre.toLowerCase())||
+      (a.whatsapp||'').includes(filtre)||
+      (a.secteur||'').toLowerCase().includes(filtre.toLowerCase())
+    );
+  }
+
+  // Stats
+  const attente=tous.filter(a=>a.statut==='en_attente'||!a.statut).length;
+  const actifs=tous.filter(a=>a.statut==='actif').length;
+  const expires=tous.filter(a=>a.statut==='expire').length;
+  const revenus=tous.filter(a=>a.statut==='actif').reduce((s,a)=>s+getPrix(a.secteur),0);
+  document.getElementById('statAttente').textContent=attente;
   document.getElementById('statActifs').textContent=actifs;
   document.getElementById('statExpires').textContent=expires;
   document.getElementById('statRevenus').textContent=revenus.toLocaleString('fr-FR');
 
-  if(filtres.length===0){
-    liste.innerHTML=`<div class="empty-state"><div class="empty-icon">📭</div><p>Aucun abonné trouvé.<br>Appuyez sur + pour en ajouter un.</p></div>`;
+  const container=document.getElementById('listeInscrits');
+
+  if(liste.length===0){
+    container.innerHTML=`<div class="empty-state"><div class="empty-icon">📭</div><p>Aucun résultat trouvé.</p></div>`;
     return;
   }
 
-  liste.innerHTML=filtres.map((a,i)=>{
-    const statut=getStatut(a.expiration);
-    const exp=new Date(a.expiration).toLocaleDateString('fr-FR');
-    const badge=statut==='actif'?'Actif':statut==='expire'?'Expiré':'Expire bientôt';
-    const wa=encodeURIComponent('Bonjour '+a.nom+', votre code d\'accès IA Pro Tools est : *'+a.codeAcces+'*\nConnectez-vous sur : g-n-rateur-d-annonce.vercel.app/connexion.html\n\nVotre abonnement expire le : '+exp);
-    return`<div class="abonne-card ${statut}">
-      <div class="abonne-header">
-        <span class="abonne-nom">${a.nom}</span>
+  container.innerHTML=liste.map((a,i)=>{
+    const statut=a.statut||'en_attente';
+    const badge=statut==='actif'?'✅ Actif':statut==='expire'?'❌ Expiré':'⏳ En attente';
+    const exp=a.expiration?new Date(a.expiration).toLocaleDateString('fr-FR'):'—';
+    const wa=encodeURIComponent('Bonjour '+a.nom+' ! Votre abonnement IA Pro Tools est maintenant actif.\n\n🔑 Votre code d\'accès : *'+(a.codeAcces||'—')+'*\n\n🌐 Connectez-vous sur :\ng-n-rateur-d-annonce.vercel.app/connexion.html\n\n📅 Votre abonnement expire le : '+exp+'\n\nMerci de votre confiance ! 🎉');
+
+    return`<div class="inscrit-card ${statut}" id="card-${i}">
+      <div class="inscrit-header">
+        <span class="inscrit-nom">${a.nom||'—'}</span>
         <span class="status-badge ${statut}">${badge}</span>
       </div>
-      <div class="abonne-info">
-        <strong>📱</strong> ${a.whatsapp}<br>
-        <strong>🎯</strong> ${a.outils}<br>
-        <strong>💰</strong> ${getTotal(a.outils).toLocaleString('fr-FR')} FCFA/mois<br>
-        <strong>📅</strong> Expire le ${exp}<br>
-        <strong>🔑</strong> Transaction : ${a.transaction||'—'}
+      <div class="inscrit-info">
+        <strong>📱</strong> ${a.whatsapp||'—'}<br>
+        <strong>📍</strong> ${a.ville||'—'}<br>
+        <strong>🎯</strong> ${a.secteur||'—'} — ${getPrix(a.secteur).toLocaleString('fr-FR')} FCFA/mois<br>
+        <strong>📅</strong> Inscrit le ${a.date||'—'} à ${a.heure||'—'}<br>
+        ${a.expiration?'<strong>⏰</strong> Expire le '+exp:''}
       </div>
-      <div class="code-box">
-        <span class="code">${a.codeAcces||'—'}</span>
-        <button class="copy-btn" onclick="copierCode('${a.codeAcces}')">📋 Copier</button>
-      </div>
-      <div class="abonne-actions">
-        <button class="btn-action btn-renouveler" onclick="renouveler(${i})">🔄 +30 jours</button>
-        <button class="btn-action btn-whatsapp" onclick="window.open('https://wa.me/${a.whatsapp?.replace(/[^0-9]/g,'')}?text=${wa}')">💬 Envoyer code</button>
-        <button class="btn-action btn-gencode" onclick="regenCode(${i})">🔑 Nouveau code</button>
-        <button class="btn-action btn-supprimer" onclick="supprimer(${i})">🗑️ Supprimer</button>
+      ${a.codeAcces?`<div class="code-box"><span class="code">${a.codeAcces}</span><button class="copy-btn" onclick="copier('${a.codeAcces}')">📋 Copier</button></div>`:''}
+      <div class="actions">
+        ${statut==='en_attente'?`<button class="btn-action btn-activer" onclick="activer(${a.id||i})">✅ Activer</button>`:''}
+        ${statut==='actif'?`<button class="btn-action btn-renouveler" onclick="renouveler(${a.id||i})">🔄 +30j</button>`:''}
+        <button class="btn-action btn-whatsapp" onclick="window.open('https://wa.me/${(a.whatsapp||'').replace(/[^0-9]/g,'')}')">💬 WhatsApp</button>
+        ${a.codeAcces?`<button class="btn-action btn-envoyer-code" onclick="window.open('https://wa.me/${(a.whatsapp||'').replace(/[^0-9]/g,'')}?text=${wa}')">📤 Envoyer code</button>`:''}
+        <button class="btn-action btn-supprimer" onclick="supprimer(${a.id||i})">🗑️ Supprimer</button>
       </div>
     </div>`;
   }).join('');
 }
 
-function filtrer(val){afficherAbonnes(val);}
+function filtrer(val){afficher(val);}
+
+function copier(code){
+  navigator.clipboard.writeText(code);
+  showToast('✅ Code copié : '+code);
+}
+
+function activer(id){
+  const inscrits=JSON.parse(localStorage.getItem('inscrits')||'[]');
+  const abonnes=JSON.parse(localStorage.getItem('abonnes')||'[]');
+
+  // Trouver dans inscrits
+  const idx=inscrits.findIndex(a=>a.id===id);
+  if(idx>=0){
+    const inscrit=inscrits[idx];
+    const code=genererCode(inscrit.secteur);
+    const exp=new Date();exp.setDate(exp.getDate()+30);
+
+    // Créer abonné
+    const abonne={
+      ...inscrit,
+      codeAcces:code,
+      expiration:exp.toISOString().split('T')[0],
+      statut:'actif'
+    };
+    abonnes.push(abonne);
+    localStorage.setItem('abonnes',JSON.stringify(abonnes));
+
+    // Supprimer des inscrits
+    inscrits.splice(idx,1);
+    localStorage.setItem('inscrits',JSON.stringify(inscrits));
+
+    showToast('✅ Abonné activé ! Code : '+code);
+    afficher();
+  }
+}
+
+function renouveler(id){
+  const abonnes=JSON.parse(localStorage.getItem('abonnes')||'[]');
+  const idx=abonnes.findIndex(a=>a.id===id);
+  if(idx>=0){
+    const exp=new Date(abonnes[idx].expiration||new Date());
+    exp.setDate(exp.getDate()+30);
+    abonnes[idx].expiration=exp.toISOString().split('T')[0];
+    abonnes[idx].statut='actif';
+    localStorage.setItem('abonnes',JSON.stringify(abonnes));
+    showToast('🔄 Abonnement renouvelé de 30 jours');
+    afficher();
+  }
+}
+
+function supprimer(id){
+  if(!confirm('Supprimer cet inscrit ?'))return;
+  let inscrits=JSON.parse(localStorage.getItem('inscrits')||'[]');
+  let abonnes=JSON.parse(localStorage.getItem('abonnes')||'[]');
+  inscrits=inscrits.filter(a=>a.id!==id);
+  abonnes=abonnes.filter(a=>a.id!==id);
+  localStorage.setItem('inscrits',JSON.stringify(inscrits));
+  localStorage.setItem('abonnes',JSON.stringify(abonnes));
+  showToast('🗑️ Supprimé');
+  afficher();
+}
 
 function ouvrirModal(){
   const today=new Date().toISOString().split('T')[0];
   const exp=new Date();exp.setDate(exp.getDate()+30);
-  document.getElementById('m-debut').value=today;
   document.getElementById('m-expiration').value=exp.toISOString().split('T')[0];
   document.getElementById('m-nom').value='';
   document.getElementById('m-whatsapp').value='';
-  document.getElementById('m-email').value='';
-  document.getElementById('m-transaction').value='';
-  genererCode();
+  document.getElementById('m-ville').value='';
+  document.getElementById('codeBox').style.display='none';
   document.getElementById('modal').classList.add('open');
 }
 
 function fermerModal(){document.getElementById('modal').classList.remove('open');}
 
-function ajouterAbonne(){
+function ajouterManuellement(){
   const nom=document.getElementById('m-nom').value.trim();
   const whatsapp=document.getElementById('m-whatsapp').value.trim();
-  const email=document.getElementById('m-email').value.trim();
-  const outils=document.getElementById('m-outils').value;
-  const transaction=document.getElementById('m-transaction').value.trim();
-  const debut=document.getElementById('m-debut').value;
+  const ville=document.getElementById('m-ville').value.trim();
+  const secteur=document.getElementById('m-secteur').value;
+  const statut=document.getElementById('m-statut').value;
   const expiration=document.getElementById('m-expiration').value;
-  if(!nom||!whatsapp||!debut||!expiration){alert('Remplissez les champs obligatoires (*).');return;}
-  const code=codeActuel||genererCode();
-  abonnes.push({nom,whatsapp,email,outils,transaction,debut,expiration,codeAcces:code});
-  localStorage.setItem('abonnes',JSON.stringify(abonnes));
-  fermerModal();
-  afficherAbonnes();
-  showToast('✅ Abonné ajouté — Code : '+code);
-}
+  if(!nom||!whatsapp){alert('Nom et WhatsApp obligatoires.');return;}
 
-function renouveler(i){
-  const exp=new Date(abonnes[i].expiration);
-  exp.setDate(exp.getDate()+30);
-  abonnes[i].expiration=exp.toISOString().split('T')[0];
-  localStorage.setItem('abonnes',JSON.stringify(abonnes));
-  afficherAbonnes();
-  showToast('✅ Abonnement renouvelé de 30 jours');
-}
+  const id=Date.now();
+  const nouvel={
+    id,nom,whatsapp,ville,secteur,statut,
+    date:new Date().toLocaleDateString('fr-FR'),
+    heure:new Date().toLocaleTimeString('fr-FR'),
+  };
 
-function regenCode(i){
-  const outils=abonnes[i].outils||'GEN';
-  const prefix=outils.includes('Immobilier')&&outils.includes('Restaurant')&&outils.includes('E-commerce')?'PACK':
-    outils.includes('Immobilier')?'IMMO':
-    outils.includes('Restaurant')?'RESTO':
-    outils.includes('E-commerce')?'ECOM':'GEN';
-  const chars='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-  let code='';
-  for(let j=0;j<6;j++)code+=chars[Math.floor(Math.random()*chars.length)];
-  abonnes[i].codeAcces=prefix+'-2026-'+code;
-  localStorage.setItem('abonnes',JSON.stringify(abonnes));
-  afficherAbonnes();
-  showToast('🔑 Nouveau code : '+abonnes[i].codeAcces);
-}
-
-function supprimer(i){
-  if(confirm('Supprimer cet abonné définitivement ?')){
-    abonnes.splice(i,1);
+  if(statut==='actif'){
+    nouvel.codeAcces=genererCode(secteur);
+    nouvel.expiration=expiration;
+    const abonnes=JSON.parse(localStorage.getItem('abonnes')||'[]');
+    abonnes.push(nouvel);
     localStorage.setItem('abonnes',JSON.stringify(abonnes));
-    afficherAbonnes();
-    showToast('🗑️ Abonné supprimé');
+    showToast('✅ Abonné ajouté ! Code : '+nouvel.codeAcces);
+  }else{
+    const inscrits=JSON.parse(localStorage.getItem('inscrits')||'[]');
+    inscrits.push(nouvel);
+    localStorage.setItem('inscrits',JSON.stringify(inscrits));
+    showToast('✅ Inscrit ajouté');
   }
+
+  fermerModal();
+  afficher();
 }
 
-document.getElementById('m-outils')?.addEventListener('change',genererCode);
+document.getElementById('m-statut')?.addEventListener('change',function(){
+  document.getElementById('codeBox').style.display=this.value==='actif'?'block':'none';
+});
 </script>
-</body>
-  </html>
+  </body>
+        
