@@ -203,8 +203,8 @@ function login(){
   if(pwd===MOT_DE_PASSE){
     document.getElementById('loginScreen').style.display='none';
     document.getElementById('dashboard').style.display='block';
-    document.getElementById('addBtn').style.display='flex';:sessionStorage.setItem('adminAccess','IAPro@2026#Steave');
-    
+    document.getElementById('addBtn').style.display='flex';
+    sessionStorage.setItem('adminAccess','IAPro@2026#Steave');
     afficher();
   }else{
     document.getElementById('loginError').style.display='block';
